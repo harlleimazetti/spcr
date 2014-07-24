@@ -31,9 +31,11 @@ $(document).on('click', '.desenho_menu .item', function()
 	var n = $('.item_desenho').length;
 	var id = 'item_desenho' + n;
 	if (opcao == 'parede_horizontal') {
-		$('#desenho_container').append('<div class="item_desenho" id="' + id + '"><i class="icon-minus icon-3x"></i></div>');
+		$('#desenho_container').append('<div class="item_desenho parede" id="' + id + '"></div>');
 	} else if (opcao == 'arma_fogo') {
-		$('#desenho_container').append('<div class="item_desenho" id="' + id + '"><span class="icone-arma_fogo icon-3x"></span></div>');
+		$('#desenho_container').append('<div class="item_desenho arma_fogo" id="' + id + '"><span class="icone-arma_fogo icon-3x teste"></span></div>');
+	} else if (opcao == 'corpo') {
+		$('#desenho_container').append('<div class="item_desenho corpo" id="' + id + '"><span class="icon-male icon-3x teste"></span></div>');
 	}
 	inicializa_desenho();
 });
@@ -68,12 +70,26 @@ function inicializa_desenho() {
 			}
 		});
 	});
+	$(function() {
+    	$(".knob.width").knob({
+			change : function (value) {
+				DoWidth(sessionStorage.el_desenho, value);
+			}
+		});
+	});
+	$(function() {
+    	$(".knob.height").knob({
+			change : function (value) {
+				DoHeight(sessionStorage.el_desenho, value);
+			}
+		});
+	});
 	//var elem = document.querySelector('#drag_element');
 	Draggabilly.prototype.positionDrag = Draggabilly.prototype.setLeftTop;
 	var items = document.querySelectorAll('.item_desenho');
 	for ( var i = 0, len = items.length; i < len; i++ ) {
 		var item = items[i];
-		var draggie = new Draggabilly(item, { containment: '#desenho_container', grid: [20,20] } );
+		var draggie = new Draggabilly(item, { grid: [20,20] } );
 	}
 	//var draggie = new Draggabilly( document.querySelector('.item_desenho') );
 	//var draggie = new Draggabilly( elem, {
@@ -94,6 +110,14 @@ function DoRotate(el, d) {
 function DoScale(el, v) {
 	v = v / 100;
 	$(el).css({ scale: v });
+}
+
+function DoWidth(el, v) {
+	$(el).css({ width : v + 'px' });
+}
+
+function DoHeight(el, v) {
+	$(el).css({ height : v + 'px' });
 }
 
 ///////// DESENHO FIM

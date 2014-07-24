@@ -71,10 +71,21 @@
 	opacity:.8 !important;
 }
 .item_desenho {
-	width:50px;
-	height:50px;
+	/*width:50px;
+	height:50px;*/
 	text-align:center;
-	padding:20px;
+}
+.parede {
+	color:#954A00;
+	background-color:#954A00;
+	width:200px;
+	height:20px;
+}
+.arma_fogo {
+	color:#CCC;
+}
+.corpo {
+	color:#FC9;	
 }
 .clear {
 	clear:both;	
@@ -82,10 +93,10 @@
 #desenho_container {
 	width:100%;
 	height:400px;
-	border-top:1px solid #666;
-	border-right:1px solid #666;
-	border-bottom:3px solid #666;
-	border-left:3px solid #666;
+	border-top:1px solid #fff;
+	border-right:1px solid #fff;
+	border-bottom:3px solid #fff;
+	border-left:3px solid #fff;
 }
 #desenho_parametros {
 	padding-right:40px;
@@ -133,4 +144,51 @@
 #desenho_corpos,
 #desenho_armas {
 	display:none;
+}
+
+.grade1 {
+	background:url(data:image/gif;base64,R0lGODlhFAAUAIAAAMDAwP///yH5BAEAAAEALAAAAAAUABQAAAImhI+pwe3vAJxQ0hssnnq/7jVgmJGfGaGiyoyh68GbjNGXTeEcGxQAOw==);
+}
+
+.grade2 {
+    background-size: 40px 40px;
+    background-image:repeating-linear-gradient(0deg, #fff, #fff 1px, transparent 1px, transparent 40px),repeating-linear-gradient(-90deg, #fff, #fff 1px, transparent 1px, transparent 40px);
+    height:100%;
+    width:100%;
+    opacity:0.14;
+    /*position:absolute;*/
+    top:0;
+    left:0;
+    z-index:-4;	
+}
+
+.grade_a {
+	background-color: transparent;
+	background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .2) 25%, rgba(255, 255, 255, .2) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .2) 75%, rgba(255, 255, 255, .2) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .2) 25%, rgba(255, 255, 255, .2) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .2) 75%, rgba(255, 255, 255, .2) 76%, transparent 77%, transparent);
+	height:100%;
+	background-size:40px 40px;
+}
+
+.grade_b {
+	background-color: transparent;
+	background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .6) 25%, rgba(255, 255, 255, .6) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .6) 75%, rgba(255, 255, 255, .6) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .6) 25%, rgba(255, 255, 255, .6) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .6) 75%, rgba(255, 255, 255, .6) 76%, transparent 77%, transparent);
+	height:100%;
+	background-size:200px 200px;
+}
+.grade {
+/*background-color: #269;*/
+	background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+	background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+	background-image: -webkit-linear-gradient(gray 2px, transparent 2px),
+    	              -webkit-linear-gradient(0, gray 2px, transparent 2px),
+	                  -webkit-linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
+	                  -webkit-linear-gradient(0, rgba(255,255,255,.15) 1px, transparent 1px);
+	background-image: -moz-linear-gradient(gray 2px, transparent 2px),
+	                  -moz-linear-gradient(0, gray 2px, transparent 2px),
+	                  -moz-linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
+	                  -moz-linear-gradient(0, rgba(255,255,255,.15) 1px, transparent 1px);
+	background-image: linear-gradient(gray 2px, transparent 2px),
+	                  linear-gradient(90deg, gray 2px, transparent 2px),
+	                  linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
+	                  linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px);
 }
