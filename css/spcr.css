@@ -70,22 +70,55 @@
 	filter:Alpha(Opacity=80) !important;
 	opacity:.8 !important;
 }
-.item_desenho {
-	/*width:50px;
-	height:50px;*/
+.container_desenho {
+	width:0;
+	height:0;
 	text-align:center;
+	background-color:#CCC;
+}
+.container_desenho.is-dragging {
+	opacity:0.50;
+}
+.item_desenho {
+	width:100%;
+	height:100%;
+	background-color:#F6F;
 }
 .parede {
-	color:#954A00;
-	background-color:#954A00;
-	width:200px;
+	width:50px;
 	height:20px;
+	background:url(../img/paredes/parede.svg) no-repeat top left;
+	background-size:100% 100%;
+}
+.parede_vertical {
+	width:20px;
+	height:50px;
+	background:url(../img/paredes/parede_vertical.svg) no-repeat top left;
+	background-size:100% 100%;
+}
+.porta {
+	width:50px;
+	height:50px;
+	background:url(../img/portas/porta.svg) no-repeat top left;
+	background-size:100% 100%;
+}
+.eletro {
+	width:50px;
+	height:50px;
+	background:url(../img/eletro/eletro.svg) no-repeat top left;
+	background-size:100% 100%;
 }
 .arma_fogo {
-	color:#CCC;
+	width:50px;
+	height:50px;
+	background:url(../img/armas/pistola.svg) no-repeat top left;
+	background-size:100% 100%;
 }
 .corpo {
-	color:#FC9;	
+	width:60px;
+	height:175px;
+	background:url(../img/corpos/corpo.svg) no-repeat top left;
+	background-size:100% 100%;
 }
 .clear {
 	clear:both;	
@@ -97,6 +130,7 @@
 	border-right:1px solid #fff;
 	border-bottom:3px solid #fff;
 	border-left:3px solid #fff;
+	overflow:hidden;
 }
 #desenho_parametros {
 	padding-right:40px;
@@ -107,6 +141,12 @@
 	float:right;
 	margin:10px;
 	width:150px;
+}
+#desenho_parametros .campos {
+	text-align:left;
+	float:right;
+	margin:10px;
+	width:300px;
 }
 #desenho_parametros .controle h2 {
 	position:absolute;
@@ -134,6 +174,21 @@
 	color:#FFF;
 	background-color:#444;
 }
+
+.desenho_menu .salvar {
+	background-color:#369;
+	cursor:pointer;
+	padding:15px;
+	width:80px;
+	height:100px;
+	min-height:100px;
+	border:1px outset #666;
+	text-align:center;
+	color:#aaa;
+	display:inline-block;
+	vertical-align:top;
+}
+
 #desenho_eixos,
 #desenho_grades,
 #desenho_paredes,

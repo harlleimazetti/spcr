@@ -16,7 +16,7 @@ $(document).on('click', '#desenho_categorias .item', function()
 		$('#desenho_janelas').show('fast');
 	} else if (opcao == 'portas') {
 		$('#desenho_portas').show('fast');
-	} else if (opcao == 'eletro') {
+	} else if (opcao == 'eletrodomesticos') {
 		$('#desenho_eletro').show('fast');
 	} else if (opcao == 'corpos') {
 		$('#desenho_corpos').show('fast');
@@ -31,11 +31,17 @@ $(document).on('click', '.desenho_menu .item', function()
 	var n = $('.item_desenho').length;
 	var id = 'item_desenho' + n;
 	if (opcao == 'parede_horizontal') {
-		$('#desenho_container').append('<div class="item_desenho parede" id="' + id + '"></div>');
+		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho parede" id="' + id + '"></div></div>');
+	} if (opcao == 'parede_vertical') {
+		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho parede_vertical" id="' + id + '"></div></div>');
 	} else if (opcao == 'arma_fogo') {
-		$('#desenho_container').append('<div class="item_desenho arma_fogo" id="' + id + '"><span class="icone-arma_fogo icon-3x teste"></span></div>');
+		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho arma_fogo" id="' + id + '"></div></div>');
 	} else if (opcao == 'corpo') {
-		$('#desenho_container').append('<div class="item_desenho corpo" id="' + id + '"><span class="icon-male icon-3x teste"></span></div>');
+		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho corpo" id="' + id + '"></div></div>');
+	} else if (opcao == 'porta') {
+		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho porta" id="' + id + '"></div></div>');
+	} else if (opcao == 'eletro') {
+		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho eletro" id="' + id + '"></div></div>');
 	}
 	inicializa_desenho();
 });
@@ -48,11 +54,26 @@ $(document).on('click', '.desenho_menu .voltar', function()
 
 $(document).on('tap', '.item_desenho', function()
 {
-	$('.desenho_menu').hide('fast');
-	$('#desenho_parametros').show('fast');
+	if (!$('#desenho_parametros').is(':visible')) {
+		$('.desenho_menu').hide('fast');
+		$('#desenho_parametros').show('fast');
+	}
 	var id = $(this).attr('id');
 	sessionStorage.el_desenho = '#' + id;
+	var altura = $(sessionStorage.el_desenho).css('height');
+	var largura = $(sessionStorage.el_desenho).css('width');
+	var rotate = $(sessionStorage.el_desenho).attr('data-rotate');
+	var nome = $(sessionStorage.el_desenho).attr('data-nome');
+	console.log('Altura: ' + altura + ', Largura: ' + largura + ', Rotate: ' + rotate);
+	$('#knob-height').val(altura).trigger('change');
+	$('#knob-width').val(largura).trigger('change');
+	$('#knob-rotate').val(rotate).trigger('change');
+	$('#item_desenho_nome').val(nome);
 	inicializa_desenho();
+});
+
+$(document).on('blur', '#item_desenho_nome', function() {
+	DoNome(sessionStorage.el_desenho, $(this).val());
 });
 
 function inicializa_desenho() {
@@ -86,10 +107,11 @@ function inicializa_desenho() {
 	});
 	//var elem = document.querySelector('#drag_element');
 	Draggabilly.prototype.positionDrag = Draggabilly.prototype.setLeftTop;
-	var items = document.querySelectorAll('.item_desenho');
+	//var items = document.querySelectorAll('.item_desenho');
+	var items = document.querySelectorAll('.container_desenho');
 	for ( var i = 0, len = items.length; i < len; i++ ) {
 		var item = items[i];
-		var draggie = new Draggabilly(item, { grid: [20,20] } );
+		var draggie = new Draggabilly(item);
 	}
 	//var draggie = new Draggabilly( document.querySelector('.item_desenho') );
 	//var draggie = new Draggabilly( elem, {
@@ -105,6 +127,7 @@ $(document).on('pagebeforeshow', '#desenho', function()
 
 function DoRotate(el, d) {
 	$(el).css({ rotate: d + 'deg' });
+	$(el).attr('data-rotate',d);
 }
 
 function DoScale(el, v) {
@@ -118,6 +141,10 @@ function DoWidth(el, v) {
 
 function DoHeight(el, v) {
 	$(el).css({ height : v + 'px' });
+}
+
+function DoNome(el, v) {
+	$(el).attr('data-nome', v);
 }
 
 ///////// DESENHO FIM
