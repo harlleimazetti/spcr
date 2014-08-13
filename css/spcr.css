@@ -247,3 +247,92 @@
 	                  linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
 	                  linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px);
 }
+
+.main {
+	margin-right:30px;
+	float:right;
+	position:relative;
+	width:7em;
+	height:7em;
+	transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	z-index:1000;
+}
+
+.quarter {
+	border:1px solid #555;
+	position:absolute;
+	width:50%;
+	height:50%;
+	z-index:-1;
+}
+
+.main .quarter1 {
+	position:absolute;
+	top:0;
+	left:0;
+	background-color:#666;
+	border-radius:100% 0 0 0;
+	z-index:-1;
+}
+
+.main .quarter2 {
+	position:absolute;
+	top:0;
+	right:0;
+	background-color:#666;
+	border-radius:0 100% 0 0;
+	z-index:-1;
+}
+
+.main .quarter3 {
+	bottom:0;
+	left:0;
+	background-color:#666;
+	border-radius:0 0 0 100%;
+	z-index:500;
+}
+
+.main .quarter4 {
+	bottom:0; 
+	right:0;
+	background-color:#666;
+	border-radius:0 0 100% 0;
+	z-index:500;
+}
+
+.main .quarter1 .icone,
+.main .quarter2 .icone
+{
+	color:#aaa;
+	position:relative;
+	top:0.2em;
+	left:1em;
+	transform:rotate(315deg);
+	-moz-transform:rotate(315deg);
+	-o-transform:rotate(315deg);
+	-ms-transform:rotate(315deg);
+	-webkit-transform:rotate(315deg);
+}
+
+.main .quarter3 .icone,
+.main .quarter4 .icone
+{
+	color:#aaa;
+	position:relative;
+	top:0.2em;
+	left:0.8em;
+	transform:rotate(315deg);
+	-moz-transform:rotate(315deg);
+	-o-transform:rotate(315deg);
+	-ms-transform:rotate(315deg);
+	-webkit-transform:rotate(315deg);
+}
+
+.info_xy {
+	margin-top:30px;
+	float:left;	
+}

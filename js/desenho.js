@@ -112,6 +112,11 @@ function inicializa_desenho() {
 	for ( var i = 0, len = items.length; i < len; i++ ) {
 		var item = items[i];
 		var draggie = new Draggabilly(item);
+		draggie.on( 'dragMove', function( instance, event, pointer ) {
+			//console.log( 'dragMove on ' + event.type + pointer.pageX + ', ' + pointer.pageY + ' position at ' + instance.position.x + ', ' + instance.position.y );
+			$('.info_x').html('X: ' + instance.position.x);
+			$('.info_y').html('Y: ' + instance.position.y);
+		});
 	}
 	//var draggie = new Draggabilly( document.querySelector('.item_desenho') );
 	//var draggie = new Draggabilly( elem, {
@@ -123,6 +128,28 @@ function inicializa_desenho() {
 $(document).on('pagebeforeshow', '#desenho', function()
 {
 	inicializa_desenho();
+});
+
+$(document).on('click', '.move-up', function()
+{
+	//alert($(sessionStorage.el_desenho).attr('id'));
+	//alert($(sessionStorage.el_desenho).closest('div.container_desenho').css('left') + ', ' + $(sessionStorage.el_desenho).closest('div.container_desenho').css('top'));
+	$(sessionStorage.el_desenho).closest('div.container_desenho').css({top: '-=1px'});
+});
+
+$(document).on('click', '.move-right', function()
+{
+	$(sessionStorage.el_desenho).closest('div.container_desenho').css({left: '+=1px'});
+});
+
+$(document).on('click', '.move-left', function()
+{
+	$(sessionStorage.el_desenho).closest('div.container_desenho').css({left: '-=1px'});
+});
+
+$(document).on('click', '.move-down', function()
+{
+	$(sessionStorage.el_desenho).closest('div.container_desenho').css({top: '+=1px'});
 });
 
 function DoRotate(el, d) {
