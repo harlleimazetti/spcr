@@ -63,7 +63,7 @@ function onFail(message) {
 $(document).on('click', '#capturar_coordenadas', function(event)
 {
 	event.preventDefault();
-	navigator.geolocation.getCurrentPosition(onGPSSuccess, onGPSError);
+	navigator.geolocation.getCurrentPosition(onGPSSuccess, onGPSError, {enableHighAccuracy : true});
 });
 
 var onGPSSuccess = function(position) {
