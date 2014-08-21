@@ -7,6 +7,7 @@ function onDeviceReady() {
 	$.support.cors = true;
 	//sincronizar();
 }
+
 $(document).on('focus', '#evidencia_form input', function() 
 {
 	sessionStorage.campo_foco = $(this).attr('id');

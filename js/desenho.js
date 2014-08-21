@@ -31,17 +31,17 @@ $(document).on('click', '.desenho_menu .item', function()
 	var n = $('.item_desenho').length;
 	var id = 'item_desenho' + n;
 	if (opcao == 'parede_horizontal') {
-		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho parede" id="' + id + '"></div></div>');
+		$('#desenho_container').append('<div class="container_desenho"><div class="item_desenho parede" id="' + id + '"></div></div>');
 	} if (opcao == 'parede_vertical') {
-		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho parede_vertical" id="' + id + '"></div></div>');
+		$('#desenho_container').append('<div class="container_desenho"><div class="item_desenho parede_vertical" id="' + id + '"></div></div>');
 	} else if (opcao == 'arma_fogo') {
-		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho arma_fogo" id="' + id + '"></div></div>');
+		$('#desenho_container').append('<div class="container_desenho"><div class="item_desenho arma_fogo" id="' + id + '"></div></div>');
 	} else if (opcao == 'corpo') {
-		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho corpo" id="' + id + '"></div></div>');
+		$('#desenho_container').append('<div class="container_desenho"><div class="item_desenho corpo" id="' + id + '"></div></div>');
 	} else if (opcao == 'porta') {
-		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho porta" id="' + id + '"></div></div>');
+		$('#desenho_container').append('<div class="container_desenho"><div class="item_desenho porta" id="' + id + '"></div></div>');
 	} else if (opcao == 'eletro') {
-		$('#desenho_container').append('<div id="container_desenho1" class="container_desenho"><div class="item_desenho eletro" id="' + id + '"></div></div>');
+		$('#desenho_container').append('<div class="container_desenho"><div class="item_desenho eletro" id="' + id + '"></div></div>');
 	}
 	inicializa_desenho();
 });
@@ -52,6 +52,10 @@ $(document).on('click', '.desenho_menu .voltar', function()
 	$('#desenho_categorias').show('fast');
 });
 
+$(document).on('click', '#desenho_container', function() {
+	$('.item_desenho').removeClass('descricao');
+});
+
 $(document).on('tap', '.item_desenho', function()
 {
 	if (!$('#desenho_parametros').is(':visible')) {
@@ -60,6 +64,10 @@ $(document).on('tap', '.item_desenho', function()
 	}
 	var id = $(this).attr('id');
 	sessionStorage.el_desenho = '#' + id;
+	$('.item_desenho').removeClass('descricao');
+	$('.item_desenho').closest('div.container_desenho').css('z-index','0');
+	$(this).closest('div.container_desenho').css('z-index','500');
+	$(this).addClass('descricao');
 	var altura = $(sessionStorage.el_desenho).css('height');
 	var largura = $(sessionStorage.el_desenho).css('width');
 	var rotate = $(sessionStorage.el_desenho).attr('data-rotate');
@@ -130,24 +138,22 @@ $(document).on('pagebeforeshow', '#desenho', function()
 	inicializa_desenho();
 });
 
-$(document).on('click', '.move-up', function()
+$(document).on('tap', '.move-up', function()
 {
-	//alert($(sessionStorage.el_desenho).attr('id'));
-	//alert($(sessionStorage.el_desenho).closest('div.container_desenho').css('left') + ', ' + $(sessionStorage.el_desenho).closest('div.container_desenho').css('top'));
 	$(sessionStorage.el_desenho).closest('div.container_desenho').css({top: '-=1px'});
 });
 
-$(document).on('click', '.move-right', function()
+$(document).on('tap', '.move-right', function()
 {
 	$(sessionStorage.el_desenho).closest('div.container_desenho').css({left: '+=1px'});
 });
 
-$(document).on('click', '.move-left', function()
+$(document).on('tap', '.move-left', function()
 {
 	$(sessionStorage.el_desenho).closest('div.container_desenho').css({left: '-=1px'});
 });
 
-$(document).on('click', '.move-down', function()
+$(document).on('tap', '.move-down', function()
 {
 	$(sessionStorage.el_desenho).closest('div.container_desenho').css({top: '+=1px'});
 });

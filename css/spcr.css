@@ -84,6 +84,17 @@
 	height:100%;
 	background-color:#F6F;
 }
+.descricao::before {
+	content:attr(data-nome);
+	position:absolute;
+	padding:5px;
+	color:#000;
+	background-color:#ccc;
+	border:1px solid #000;
+	border-radius:0.5em;
+	top:-30px;
+	white-space:nowrap;
+}
 .parede {
 	width:50px;
 	height:20px;
@@ -126,10 +137,10 @@
 #desenho_container {
 	width:100%;
 	height:400px;
-	border-top:1px solid #fff;
-	border-right:1px solid #fff;
-	border-bottom:3px solid #fff;
-	border-left:3px solid #fff;
+	border-top:1px solid #666;
+	border-right:1px solid #666;
+	border-bottom:1px solid #666;
+	border-left:1px solid #666;
 	overflow:hidden;
 }
 #desenho_parametros {
@@ -151,7 +162,8 @@
 #desenho_parametros .controle h2 {
 	position:absolute;
 	bottom:10px;
-	margin-left:45px;
+	margin-left:auto;
+	margin-right:auto;
 }
 #desenho_categorias {
 
