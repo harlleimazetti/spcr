@@ -364,7 +364,7 @@ function transmitir_impressao_digital(id) {
 	get_config(1, function(config) {
 		var url_servidor = config.url_servidor;
 		get_impressao_digital(id, function(impressao_digital) {
-			if (vestigio) {
+			if (impressao_digital) {
 				$.ajax({
 					url: url_servidor,
 					data: {acao: 'impressao_digital', dados : impressao_digital},
