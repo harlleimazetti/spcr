@@ -2,7 +2,25 @@ var db = openDatabase ("spcr", "1.0", "Test", 65535);
 db.transaction (function (transaction) 
 {
 	console.log('Configurando Banco de Dados...');
+
+	//var sql = "DROP TABLE impressao_digital";
+	//transaction.executeSql (sql, undefined, function() { }, error);
 	
+	var sql = "CREATE TABLE IF NOT EXISTS impressao_digital " +
+		" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+		"re_id INTEGER, " +
+		"numero_ordem INTEGER, " +
+		"data DATE, " +
+		"hora TIME, " +
+		"coordenadas VARCHAR(200), " +
+		"descricao TEXT, " +
+		"localizacao TEXT, " +
+		"imagem BLOB, " +
+		"imagem_uri TEXT " +
+		")"
+	transaction.executeSql (sql, undefined, function() { }, error);
+	console.log(sql);
+		
 	//var sql = "DROP TABLE carac_vitima";
 	//transaction.executeSql (sql, undefined, function() { }, error);
 	
