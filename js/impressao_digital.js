@@ -205,7 +205,7 @@ $(document).on('pageshow', '#impressao_digital_lista', function()
 	get_all_impressao_digital(function(impressao_digital) {
 		for (var i = 0; i < impressao_digital.length; i++)
 		{
-			output += '<li id="' + impressao_digital[i].id + '" data-id="' + impressao_digital[i].id + '"><a href="#"><h2>' + formata_data(impressao_digital[i].data) + ', ' + impressao_digital[i].hora + '</h2><p>' + impressao_digital[i].descricao + '</p></a><a href="#" class="excluir">Excluir</a></li>';
+			output += '<li id="' + impressao_digital[i].id + '" data-id="' + impressao_digital[i].id + '"><a href="#"><img src="' + impressao_digital[i].imagem_uri + '" /><h2>' + formata_data(impressao_digital[i].data) + ', ' + impressao_digital[i].hora + '</h2><p>' + impressao_digital[i].descricao + '</p></a><a href="#" class="excluir">Excluir</a></li>';
 		}
 		$('#lista_impressao_digital').append(output).listview('refresh');
 	});
