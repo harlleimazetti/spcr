@@ -359,6 +359,33 @@ function transmitir_vestigio(id) {
 	});
 }
 
+function transmitir_impressao_digital(id) {
+	alert('Trasmitir dados');
+	get_config(1, function(config) {
+		var url_servidor = config.url_servidor;
+		get_impressao_digital(id, function(impressao_digital) {
+			if (vestigio) {
+				$.ajax({
+					url: url_servidor,
+					data: {acao: 'impressao_digital', dados : impressao_digital},
+					dataType: 'jsonp',
+					jsonp: 'callback',
+					success: function(resultado) {
+						//console.log(resultado.mensagem);
+						//console.log(resultado.registro);
+						toast(resultado.mensagem);
+						transmitir_imagem(impressao_digital.imagem_uri, 'impressao_digital', 'imagem', impressao_digital.id);
+					},
+					error: function (xhr, textStatus, thrownError) {
+						//console.log('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+						toast('textStatus: ' + textStatus + ', thrownError: ' + thrownError);
+					}
+				});
+			}
+		});
+	});
+}
+
 function transmitir_dados() {
 	alert('Trasmitir dados');
 	get_config(1, function(config) {
