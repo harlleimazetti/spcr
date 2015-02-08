@@ -21,9 +21,11 @@
     <script src="js/carac_coisa.js"></script>
     <script src="js/carac_vitima.js"></script>
     <script src="js/desenho.js"></script>
+    <script src="js/impressao_digital.js"></script>
     <script src="js/knob/jquery.knob.js"></script>
     <script src="js/draggabilly/draggabilly.pkgd.min.js"></script>
     <script src="js/transit/jquery.transit.min.js"></script>
+    <script src="js/camanjs/caman.full.js"></script>
     
     <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
     <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css" />
@@ -86,6 +88,12 @@
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false">
+                	<i class="icon-bullseye icone"></i>
+					<a href="#impressao_digital_lista">
+						<p>Impressão Digital</p>
+					</a>
+				</li>
+				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-cog icone"></i>
 					<a href="#config_formulario">
 						<p>Configurações</p>
@@ -138,7 +146,24 @@
                     
 		</div><!-- /content -->
 	</div><!-- /page -->
+
+    <div data-role="page" id="impressao_digital_lista" data-theme="a">
     
+		<div data-role="header" data-position="fixed">
+			<a href="#" data-icon="arrow-l" data-rel="back">Voltar</a>
+			<h1>Impressões Digitais</h1>
+            <a href="#" data-icon="plus" id="btn_impressao_digital_novo">Novo</a>
+		</div><!-- /header -->
+        
+    	<div data-role="content">
+        
+			<ul data-role="listview" data-inset="false" id="lista_impressao_digital" data-icon="false" data-split-icon="delete" data-split-theme="a">
+
+			</ul>
+                    
+		</div><!-- /content -->
+	</div><!-- /page -->
+        
     <div data-role="page" id="vestigio_lista" data-theme="a">
     
 		<div data-role="header" data-position="fixed">
@@ -313,6 +338,65 @@
 					<div class="ui-block-a"><button data-theme="b" id="btn_re_salvar">Salvar</button></div>
 					<div class="ui-block-b"><button data-theme="d" id="btn_re_limpar">Limpar</button></div>
 				</div><!-- /grid-a -->
+                
+			</form>
+            
+		</div><!-- /content -->
+	</div><!-- /page -->
+    
+	<div data-role="page" id="impressao_digital_formulario" data-theme="a">
+        
+        <div data-role="header">
+            <a href="#" data-rel="back" data-icon="arrow-l">Voltar</a>
+            <h1>Impressão Digital</h1>
+        </div><!-- /header -->
+
+		<div data-role="content">
+
+        	<form action="teste" method="post" id="impressao_digital_form" name="impressao_digital_form">
+
+                <input type="hidden" name="operacao_bd" id="operacao_bd" value="">
+                <input type="hidden" name="id" id="id" value="">
+                <input type="hidden" name="re_id" id="re_id" value="">
+                <input type="hidden" name="numero_ordem" id="numero_ordem" value="">
+                
+                <ul data-role="listview" style="margin-bottom:20px">
+                	<li data-role="list-divider">
+						<h2 id="re_codigo"></h2>
+                        <p class="evidencia_ordem_texto ui-li-aside">NO:</p>
+                        <p class="evidencia_ordem ui-li-aside" id="numero_ordem_texto"></p>
+					</li>
+                </ul>
+                
+                <button class="capturar_imagem" data-img-uri="imagem_uri" data-img-vis="visualizacao_imagem">Capturar Imagem</button>
+
+                <label for="data">Data:</label>
+                <input type="text" name="data" id="data" value="" disabled>
+                
+                <label for="hora">Hora:</label>
+                <input type="text" name="hora" id="hora" value="" disabled>
+                
+                <label for="coordenadas">Coordenadas do GPS:</label>
+                <input type="text" name="coordenadas" id="coordenadas" value="">
+                
+                <label for="descricao">Descrição:</label>
+                <input type="text" name="descricao" id="descricao" value="">
+                
+                <label for="localizacao">Localização:</label>
+                <input type="text" name="localizacao" id="localizacao" value="">
+                
+                <input type="hidden" name="imagem_uri" id="imagem_uri" value="">
+                
+                <button id="capturar_coordenadas">Coordenadas GPS</button>
+
+				<div class="ui-grid-b">
+					<div class="ui-block-a"><button data-theme="b" id="btn_vestigio_salvar">Salvar</button></div>
+                    <div class="ui-block-b"><button data-theme="e" id="btn_vestigio_transmitir">Transmitir</button></div>
+					<div class="ui-block-c"><button data-theme="d" id="btn_vestigio_limpar">Limpar</button></div>
+				</div><!-- /grid-a -->
+
+				<img style="display:block;width:100%;" id="visualizacao_imagem" src="" />
+				<img style="display:none;" id="largeImage" src="" />
                 
 			</form>
             
@@ -1470,6 +1554,25 @@
             
 		</div><!-- /footer -->
         
+	</div><!-- /page -->
+    
+<div data-role="page" id="impressao_digital" data-theme="a">
+    
+		<div data-role="header" data-position="fixed">
+			<a href="#" data-icon="arrow-l" data-rel="back">Voltar</a>
+			<h1>Impressão Digital</h1>
+            <a href="#" data-icon="plus" id="btn_informe_novo">Novo</a>
+		</div><!-- /header -->
+        
+    	<div data-role="content">
+        
+        	<img id="img-caman" src="img/digital.jpg">
+
+			<ul data-role="listview" data-inset="false" id="lista_impressao_digital" data-icon="false" data-split-icon="delete" data-split-theme="a">
+  
+			</ul>
+                    
+		</div><!-- /content -->
 	</div><!-- /page -->
         
 	<div data-role="page" id="config_formulario" data-theme="a">
