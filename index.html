@@ -6,6 +6,7 @@
 
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	<script src="js/jquery-1.9.1.min.js"></script>
+    <script src="http://view.jquerymobile.com/master/tools/log-page-events.js"></script>
 	<script src="js/jquery.mobile-1.3.2.min.js"></script>
     <script src="js/db.js"></script>
     <script src="js/funcoes.js"></script>
@@ -22,10 +23,12 @@
     <script src="js/carac_vitima.js"></script>
     <script src="js/desenho.js"></script>
     <script src="js/impressao_digital.js"></script>
+	<script src="js/img_editor.js"></script> 
     <script src="js/knob/jquery.knob.js"></script>
     <script src="js/draggabilly/draggabilly.pkgd.min.js"></script>
     <script src="js/transit/jquery.transit.min.js"></script>
     <script src="js/camanjs/caman.full.js"></script>
+    <script src="js/jsfeat/jsfeat-min.js"></script>
     
     <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
     <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css" />
@@ -87,12 +90,14 @@
 						<p>Informes</p>
 					</a>
 				</li>
+                <!--
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-bullseye icone"></i>
 					<a href="#impressao_digital_lista">
 						<p>Impressão Digital</p>
 					</a>
 				</li>
+                -->
 				<li class="ui-icon-nodisc" data-iconshadow="false">
                 	<i class="icon-cog icone"></i>
 					<a href="#config_formulario">
@@ -1556,17 +1561,47 @@
         
 	</div><!-- /page -->
     
-<div data-role="page" id="impressao_digital" data-theme="a">
+	<div data-role="page" id="img_editor" data-theme="a">
+		<div data-role="panel" data-position="right" data-display="overlay" id="imgEditorPanel" data-theme="a">
+        	<button id="imgEditorBtnGray">Escala de Cinza</button>
+		</div><!-- /panel -->
+        
+		<div data-role="header" data-position="fixed">
+			<a href="#" data-icon="arrow-l" data-rel="back">Voltar</a>
+			<h1>Editor de Imagem</h1>
+            <a href="#" data-icon="plus" id="btn_img_editor_salvar">Salvar</a>
+			<div data-role="navbar">
+				<ul>
+					<li id="imgEditorBtnRotateRight"><a href="#"><i class="icon-rotate-right icon-2x"></i></a></li>
+					<li id="imgEditorBtnRotateLeft"><a href="#"><i class="icon-rotate-left icon-2x"></i></a></li>
+					<li id="imgEditorBtnFindCorners"><a href="#"><i class="icon-check-empty icon-2x"></i></a></li>
+                    <li id="imgEditorBtnCrop"><a href="#"><i class="icon-crop icon-2x"></i></a></li>
+                    <li id="imgEditorBtnPanel"><a href="#imgEditorPanel"><i class="icon-ellipsis-vertical icon-2x"></i></a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /header -->
+    	<div data-role="content">
+            <div id="DivImgEditorCanvas">
+	        	<canvas id="img_editor_canvas"></canvas>
+                <canvas id="img_editor_canvas_tmp" width="320" height="240" style="display:none"></canvas>
+            </div>
+		</div><!-- /content -->
+	</div><!-- /page -->
     
+	<div data-role="page" id="impressao_digital" data-theme="a">    
 		<div data-role="header" data-position="fixed">
 			<a href="#" data-icon="arrow-l" data-rel="back">Voltar</a>
 			<h1>Impressão Digital</h1>
-            <a href="#" data-icon="plus" id="btn_informe_novo">Novo</a>
+            <a href="#" data-icon="plus" id="btn_digital_novo">Novo</a>
 		</div><!-- /header -->
         
     	<div data-role="content">
-        
-        	<img id="img-caman" src="img/digital.jpg">
+
+			<!-- <img id="img-caman" src="img/samsung4.jpg"></div> -->
+            <img id="digital_preview"></div>
+            
+	        <canvas id="canvas_jsfeat" width="640" height="480" style="border: 2px solid #FFF"></canvas>
+    	    <canvas id="canvas2"></canvas>
 
 			<ul data-role="listview" data-inset="false" id="lista_impressao_digital" data-icon="false" data-split-icon="delete" data-split-theme="a">
   

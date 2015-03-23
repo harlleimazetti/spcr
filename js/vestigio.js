@@ -335,4 +335,17 @@ $(document).on('click', '#btn_vestigio_limpar', function(event)
 	$('#vestigio_form #visualizacao_imagem').attr('src', '');
 });
 
+$('#visualizacao_imagem', $.mobile.activePage).on('click', function() {
+	alert($(this).attr('src'));
+});
+
+$(document).on('click', '#visualizacao_imagem', function()
+{
+	var img_src = $(this).attr('src');
+	sessionStorage.img_src = img_src;
+	console.log('clique na imagem');
+	console.log(sessionStorage.img_src);
+	$.mobile.changePage( "#img_editor", {transition : 'none'} );
+});
+
 ///////// VESTÍGIOS FIM
