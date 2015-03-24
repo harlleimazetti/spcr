@@ -13,11 +13,16 @@ function imgEditor() {
 	}
 }
 imgEditor.prototype.carregaImagem = function(img_src) {
-	$(canvasImgEditorID).removeAttr("data-caman-id");
+	//$(canvasImgEditorID).removeAttr("data-caman-id");
 	//Caman(canvasImgEditorID, img_src, function() {
 	//	this.render();
 		//resizeImgEditor();
 	//});
+	var im_tmp = new Image();
+	im_tmp.onload = function() {
+		ctxImgEditor.drawImage(im_tmp, 0, 0);
+	}
+	im_tmp.src = img_src;
 }
 imgEditor.prototype.rotateRight = function() {
 	Caman(canvasImgEditorID, function() {
