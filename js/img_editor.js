@@ -20,7 +20,9 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 	//});
 	var im_tmp = new Image();
 	im_tmp.onload = function() {
-		ctxImgEditor.drawImage(im_tmp, 0, 0);
+       	var width = 320;
+       	var height = 240;
+		ctxImgEditor.drawImage(im_tmp, 0, 0, width, height);
 	}
 	im_tmp.src = img_src;
 }
