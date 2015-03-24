@@ -68,7 +68,6 @@ imgEditor.prototype.corners = function() {
 	ctxImgEditorTmp = canvasImgEditorTmp.getContext('2d');
 	
 	im_tmp = new Image();
-	im_tmp.src = sessionStorage.img_src;
 
 	im_tmp.onload = function() {
        	var width = 320;
@@ -96,7 +95,7 @@ imgEditor.prototype.corners = function() {
 		// perform detection
 		// returns the amount of detected corners
 		var count = jsfeat.yape06.detect(im, corners, border = 1);
-		console.log(count);
+		//console.log(count);
 		//console.log(corners);
 			
 		// render result back to canvas
@@ -108,7 +107,7 @@ imgEditor.prototype.corners = function() {
 			var pix = (0xff << 24) | (0x00 << 16) | (0xff << 8) | 0x00;
 			for(var i=0; i < count; ++i)
 			{
-				console.log('Ponto ' + i + ': ' + 'X: ' + corners[i].x + ', Y: ' + corners[i].y);
+				//console.log('Ponto ' + i + ': ' + 'X: ' + corners[i].x + ', Y: ' + corners[i].y);
 				var x = corners[i].x;
 				var y = corners[i].y;
 				var off = (x + y * step);
@@ -151,11 +150,11 @@ imgEditor.prototype.corners = function() {
 			}
 		}
 			
-		console.log('Coordenadas antes do ajuste');
-		console.log(topLeft);
-		console.log(topRight);
-		console.log(bottomLeft);
-		console.log(bottomRight);
+		//console.log('Coordenadas antes do ajuste');
+		//console.log(topLeft);
+		//console.log(topRight);
+		//console.log(bottomLeft);
+		//console.log(bottomRight);
 		
 		function recortarFora(topLeft, topRight, bottomLeft, bottomRight) {
 			if (topLeft.y < topRight.y) {
@@ -221,8 +220,8 @@ imgEditor.prototype.corners = function() {
 
 		// Ajusta para as proporções da imagem original antes de recortar
 		percent = canvasImgEditor.width * 100 / 320;
-		console.log('Imagem Original: ' + canvasImgEditor.width);
-		console.log('Percentual: ' + percent);
+		//console.log('Imagem Original: ' + canvasImgEditor.width);
+		//console.log('Percentual: ' + percent);
 		
 		topLeft.x = topLeft.x * (percent / 100);
 		topLeft.y = topLeft.y * (percent / 100);
@@ -239,20 +238,21 @@ imgEditor.prototype.corners = function() {
 		//recortarFora(topLeft, topRight, bottomLeft, bottomRight);
 		recortarDentro(topLeft, topRight, bottomLeft, bottomRight);
 			
-		console.log('Coordenadas depois do ajuste (INSIDE)');
-		console.log(topLeft);
-		console.log(topRight);
-		console.log(bottomLeft);
-		console.log(bottomRight);
+		//console.log('Coordenadas depois do ajuste (INSIDE)');
+		//console.log(topLeft);
+		//console.log(topRight);
+		//console.log(bottomLeft);
+		//console.log(bottomRight);
 		
 		var co = 180 / Math.PI;
 		var dx = topLeft.x - topRight.x;
 		var dy = topLeft.y - topRight.y;
 		var angulo = Math.atan2(dy, dx) * co;
 		
-		console.log('Angulo');
-		console.log(angulo);
+		//console.log('Angulo');
+		//console.log(angulo);
 	}
+	im_tmp.src = sessionStorage.img_src;
 }
 
 var editor = new imgEditor();
