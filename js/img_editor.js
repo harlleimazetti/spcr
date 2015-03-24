@@ -16,7 +16,7 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, img_src, function() {
 		this.render();
-		resizeImgEditor();
+		//resizeImgEditor();
 	});
 }
 imgEditor.prototype.rotateRight = function() {
