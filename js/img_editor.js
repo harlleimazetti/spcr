@@ -13,18 +13,29 @@ function imgEditor() {
 	}
 }
 imgEditor.prototype.carregaImagem = function(img_src) {
-	//$(canvasImgEditorID).removeAttr("data-caman-id");
-	//Caman(canvasImgEditorID, img_src, function() {
-	//	this.render();
-		//resizeImgEditor();
-	//});
+	/*$(canvasImgEditorID).removeAttr("data-caman-id");
+	Caman(canvasImgEditorID, img_src, function() {
+		this.render();
+		resizeImgEditor();
+	});*/
 	var im_tmp = new Image();
 	im_tmp.onload = function() {
-       	var width = 320;
-       	var height = 240;
-		ctxImgEditor.drawImage(im_tmp, 0, 0, width, height);
+		ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
 	}
 	im_tmp.src = img_src;
+	$(canvasImgEditorID).attr("data-caman-id", "1");
+	/*var myimage = new Image();
+    myimage.onload = function() {
+          $('#myImageDiv').html('<img id="my-image" src='+myimage.src+' />');
+          Caman('#my-image', function () {
+                 this.brightness(10);
+                 this.contrast(30);
+                 this.sepia(60);
+                 this.saturation(-30);
+                 this.render();
+          });
+    }
+    myimage.src = 'images/myimage.jpg';*/
 }
 imgEditor.prototype.rotateRight = function() {
 	Caman(canvasImgEditorID, function() {
@@ -40,12 +51,16 @@ imgEditor.prototype.rotateLeft = function() {
 }
 imgEditor.prototype.resize = function(width, height) {
 	Caman(canvasImgEditorID, function() {
-		this.resize({width: Width, height: height});
+		this.resize({width: width, height: height});
 		this.render();
 	});
 }
 imgEditor.prototype.gray = function() {
-	var width = canvasImgEditor.width;
+	Caman(canvasImgEditorID, function() {
+		this.greyscale()/
+		this.render();
+	});
+	/*var width = canvasImgEditor.width;
 	var height = canvasImgEditor.height;
 	var imageData = ctxImgEditor.getImageData(0, 0, width, height);
 	gray_img = new jsfeat.matrix_t(width, height, jsfeat.U8_t | jsfeat.C1_t);
@@ -61,10 +76,11 @@ imgEditor.prototype.gray = function() {
 		pix = gray_img.data[i];
 		data_u32[i] = alpha | (pix << 16) | (pix << 8) | pix;
 	}        
-	ctxImgEditor.putImageData(imageData, 0, 0);
+	ctxImgEditor.putImageData(imageData, 0, 0);*/
 }
 imgEditor.prototype.corners = function() {
-	var canvasImgEditorTmp = document.getElementById('img_editor_canvas_tmp'),
+	//var canvasImgEditorTmp = document.getElementById('img_editor_canvas_tmp'),
+	var canvasImgEditorTmp = document.getElementById('img_editor_canvas'),
 	ctxImgEditorTmp = canvasImgEditorTmp.getContext('2d');
 	
 	im_tmp = new Image();
@@ -268,13 +284,13 @@ $(document).on('pagebeforeshow', '#img_editor', function()
 
 $(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
 {
-	editor.resize(canvasImgEditor.height, canvasImgEditor.width);
+	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
 	editor.rotateRight();
 });
 
 $(document).on('click', '#img_editor #imgEditorBtnRotateLeft', function()
 {
-	editor.resize(canvasImgEditor.height, canvasImgEditor.width);
+	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
 	editor.rotateLeft();
 });
 $(document).on('click', '#img_editor #imgEditorBtnFindCorners', function()
