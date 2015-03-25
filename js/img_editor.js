@@ -79,8 +79,8 @@ imgEditor.prototype.gray = function() {
 	ctxImgEditor.putImageData(imageData, 0, 0);*/
 }
 imgEditor.prototype.corners = function() {
-	//var canvasImgEditorTmp = document.getElementById('img_editor_canvas_tmp'),
-	var canvasImgEditorTmp = document.getElementById('img_editor_canvas');
+	/*
+	var canvasImgEditorTmp = document.getElementById('img_editor_canvas_tmp');
 	ctxImgEditorTmp = canvasImgEditorTmp.getContext('2d');
 	
 	im_tmp = new Image();
@@ -90,11 +90,15 @@ imgEditor.prototype.corners = function() {
        	var height = 240;
 		ctxImgEditorTmp.drawImage(im_tmp, 0, 0, width, height);
 	
-		var imageData = ctxImgEditorTmp.getImageData(0, 0, width, height);
+		var imageData = ctxImgEditorTmp.getImageData(0, 0, width, height);*/
+       	var width = 320;
+       	var height = 240;
+		var imageData = ctxImgEditor.getImageData(0, 0, width, height);
 		var im = new jsfeat.matrix_t(width, height, jsfeat.U8_t | jsfeat.C1_t);
 		jsfeat.imgproc.grayscale(imageData.data, width, height, im);
-		jsfeat.imgproc.box_blur_gray(im, im, 2, 0);
-	
+		jsfeat.imgproc.box_blur_gray(im, im, 4, 0);
+
+		/*
 		var corners = [],
 			laplacian_threshold = 50,
 			min_eigen_value_threshold = 80;
@@ -269,6 +273,7 @@ imgEditor.prototype.corners = function() {
 		//console.log(angulo);
 	}
 	im_tmp.src = sessionStorage.img_src;
+	*/
 }
 
 var editor = new imgEditor();
