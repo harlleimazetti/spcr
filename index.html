@@ -30,6 +30,7 @@
 
 			var img = new Image();
 			img.onload = function() {
+				$('#teste').html('TESTE');
 				ctx.drawImage(img, 0, 0, 640, 480);
 								
 				canvasWidth  = canvas.width;
@@ -104,6 +105,7 @@
                 <canvas id="canvas" width="640" height="480"></canvas>
                 <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
                 <div id="log" class="alert alert-info"></div>
+                <div id="teste"></div>
             </div>
 	</body>
 </html>
