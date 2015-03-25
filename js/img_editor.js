@@ -96,7 +96,7 @@ imgEditor.prototype.corners = function() {
 		var imageData = ctxImgEditor.getImageData(0, 0, width, height);
 		var im = new jsfeat.matrix_t(width, height, jsfeat.U8_t | jsfeat.C1_t);
 		jsfeat.imgproc.grayscale(imageData.data, width, height, im);
-		jsfeat.imgproc.box_blur_gray(im, im, 4, 0);
+		//jsfeat.imgproc.box_blur_gray(im, im, 4, 0);
 		
 		// render result back to canvas
 		var data_u32 = new Uint32Array(imageData.data.buffer);
