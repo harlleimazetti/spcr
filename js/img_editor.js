@@ -57,7 +57,7 @@ imgEditor.prototype.resize = function(width, height) {
 }
 imgEditor.prototype.gray = function() {
 	Caman(canvasImgEditorID, function() {
-		this.greyscale()/
+		this.greyscale();
 		this.render();
 	});
 	/*var width = canvasImgEditor.width;
@@ -80,7 +80,7 @@ imgEditor.prototype.gray = function() {
 }
 imgEditor.prototype.corners = function() {
 	//var canvasImgEditorTmp = document.getElementById('img_editor_canvas_tmp'),
-	var canvasImgEditorTmp = document.getElementById('img_editor_canvas'),
+	var canvasImgEditorTmp = document.getElementById('img_editor_canvas');
 	ctxImgEditorTmp = canvasImgEditorTmp.getContext('2d');
 	
 	im_tmp = new Image();
