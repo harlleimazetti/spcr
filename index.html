@@ -6,7 +6,7 @@
 
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	<script src="js/jquery-1.9.1.min.js"></script>
-    <script src="http://view.jquerymobile.com/master/tools/log-page-events.js"></script>
+    <!-- <script src="http://view.jquerymobile.com/master/tools/log-page-events.js"></script> -->
 	<script src="js/jquery.mobile-1.3.2.min.js"></script>
     <script src="js/db.js"></script>
     <script src="js/funcoes.js"></script>
@@ -1568,12 +1568,12 @@
         
 		<div data-role="header" data-position="fixed">
 			<a href="#" data-icon="arrow-l" data-rel="back">Voltar</a>
-			<h1>Editor de Imagem - 1</h1>
+			<h1>Editor de Imagem - 2</h1>
             <a href="#" data-icon="plus" id="btn_img_editor_salvar">Salvar</a>
 			<div data-role="navbar">
 				<ul>
-					<li id="imgEditorBtnRotateRight"><a href="#"><i class="icon-rotate-right icon-2x"></i></a></li>
 					<li id="imgEditorBtnRotateLeft"><a href="#"><i class="icon-rotate-left icon-2x"></i></a></li>
+                    <li id="imgEditorBtnRotateRight"><a href="#"><i class="icon-rotate-right icon-2x"></i></a></li>
 					<li id="imgEditorBtnFindCorners"><a href="#"><i class="icon-check-empty icon-2x"></i></a></li>
                     <li id="imgEditorBtnCrop"><a href="#"><i class="icon-crop icon-2x"></i></a></li>
                     <li id="imgEditorBtnPanel"><a href="#imgEditorPanel"><i class="icon-ellipsis-vertical icon-2x"></i></a></li>
@@ -1582,8 +1582,8 @@
 		</div><!-- /header -->
     	<div data-role="content">
             <div id="DivImgEditorCanvas">
-	        	<canvas id="img_editor_canvas"></canvas>
-                <canvas id="img_editor_canvas_tmp" width="320" height="240"></canvas>
+	        	<canvas id="img_editor_canvas" width="320" height="240"></canvas>
+                <canvas id="img_editor_canvas_tmp" width="320" height="240" style="display:none"></canvas>
             </div>
 		</div><!-- /content -->
 	</div><!-- /page -->
