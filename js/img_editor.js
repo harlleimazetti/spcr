@@ -21,6 +21,7 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 	var im_tmp = new Image();
 	im_tmp.onload = function() {
 		ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
+		resizeImgEditor();
 	}
 	im_tmp.src = img_src;
 	$(canvasImgEditorID).attr("data-caman-id", "1");
@@ -60,26 +61,68 @@ imgEditor.prototype.gray = function() {
 		this.greyscale();
 		this.render();
 	});
-	/*var width = canvasImgEditor.width;
-	var height = canvasImgEditor.height;
-	var imageData = ctxImgEditor.getImageData(0, 0, width, height);
-	gray_img = new jsfeat.matrix_t(width, height, jsfeat.U8_t | jsfeat.C1_t);
-	code = jsfeat.COLOR_RGBA2GRAY;
-	jsfeat.imgproc.grayscale(imageData.data, width, height, gray_img, code);
-	//jsfeat.imgproc.box_blur_gray(gray_img, gray_img, 2, 0);
-
-	// render result back to canvas
-	var data_u32 = new Uint32Array(imageData.data.buffer);
-	var alpha = (0xff << 24);
-	var i = gray_img.cols*gray_img.rows, pix = 0;
-	while(--i >= 0) {
-		pix = gray_img.data[i];
-		data_u32[i] = alpha | (pix << 16) | (pix << 8) | pix;
-	}        
-	ctxImgEditor.putImageData(imageData, 0, 0);*/
 }
 imgEditor.prototype.corners = function() {
-	/*
+	
+}
+
+var editor = new imgEditor();
+
+$(document).on('pagebeforeshow', '#img_editor', function()
+{
+	canvasImgEditor = document.getElementById('img_editor_canvas');
+	ctxImgEditor = canvasImgEditor.getContext('2d');
+	//console.log('pagebeforeshow');
+	//console.log(sessionStorage.img_src);
+	//console.log(ctxImgEditor);
+	editor.carregaImagem(sessionStorage.img_src);
+});
+
+$(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
+{
+	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
+	editor.rotateRight();
+});
+
+$(document).on('click', '#img_editor #imgEditorBtnRotateLeft', function()
+{
+	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
+	editor.rotateLeft();
+});
+$(document).on('click', '#img_editor #imgEditorBtnFindCorners', function()
+{
+	editor.corners();
+});
+$(document).on('click', '#img_editor #imgEditorBtnGray', function()
+{
+	editor.gray();
+});
+
+function resizeImgEditor() {
+	var marginWidth = 0.04;
+	var canvasPercent = 1 - (marginWidth * 2);
+	//console.log('Margin Width: ' + marginWidth);
+	//console.log('Canvas Percent: ' + canvasPercent);
+	var newWidth = window.innerWidth;
+	var newHeight = window.innerHeight;
+	//console.log('Width: ' + newWidth + ' - Height: ' + newHeight);
+	var margin = newWidth * marginWidth;
+	//console.log('Margem: ' + margin);
+	var newCanvasWidth = newWidth * canvasPercent;
+	//console.log('Nova Canvas Width: ' + newCanvasWidth);
+	//console.log('Canvas Width: ' + canvasImgEditor.width);
+	var newCanvasScale = newCanvasWidth * 100 / (canvasImgEditor.width) / 100;
+	//console.log('Nova Canvas Scale: ' + newCanvasScale);
+	$(canvasImgEditorID).css({
+		'-webkit-transform' : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'-moz-transform'    : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'-ms-transform'     : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'-o-transform'      : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'transform'         : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')'
+	});
+}
+
+/*imgEditor.prototype.corners = function() {
 	var canvasImgEditorTmp = document.getElementById('img_editor_canvas_tmp');
 	ctxImgEditorTmp = canvasImgEditorTmp.getContext('2d');
 	
@@ -89,14 +132,10 @@ imgEditor.prototype.corners = function() {
        	var width = 320;
        	var height = 240;
 		ctxImgEditorTmp.drawImage(im_tmp, 0, 0, width, height);
-	
-		var imageData = ctxImgEditorTmp.getImageData(0, 0, width, height);*/
-       	var width = 320;
-       	var height = 240;
-		var imageData = ctxImgEditor.getImageData(0, 0, width, height);
+		var imageData = ctxImgEditorTmp.getImageData(0, 0, width, height);
 		var im = new jsfeat.matrix_t(width, height, jsfeat.U8_t | jsfeat.C1_t);
 		jsfeat.imgproc.grayscale(imageData.data, width, height, im);
-		//jsfeat.imgproc.box_blur_gray(im, im, 4, 0);
+		jsfeat.imgproc.box_blur_gray(im, im, 4, 0);
 		
 		// render result back to canvas
 		var data_u32 = new Uint32Array(imageData.data.buffer);
@@ -108,7 +147,6 @@ imgEditor.prototype.corners = function() {
 		}
 		ctxImgEditor.putImageData(imageData, 0, 0);
 
-		/*
 		var corners = [],
 			laplacian_threshold = 50,
 			min_eigen_value_threshold = 80;
@@ -283,62 +321,6 @@ imgEditor.prototype.corners = function() {
 		//console.log(angulo);
 	}
 	im_tmp.src = sessionStorage.img_src;
-	*/
-}
-
-var editor = new imgEditor();
-
-$(document).on('pagebeforeshow', '#img_editor', function()
-{
-	canvasImgEditor = document.getElementById('img_editor_canvas');
-	ctxImgEditor = canvasImgEditor.getContext('2d');
-	//console.log('pagebeforeshow');
-	//console.log(sessionStorage.img_src);
-	editor.carregaImagem(sessionStorage.img_src);
-});
-
-$(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
-{
-	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
-	editor.rotateRight();
-});
-
-$(document).on('click', '#img_editor #imgEditorBtnRotateLeft', function()
-{
-	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
-	editor.rotateLeft();
-});
-$(document).on('click', '#img_editor #imgEditorBtnFindCorners', function()
-{
-	editor.corners();
-});
-$(document).on('click', '#img_editor #imgEditorBtnGray', function()
-{
-	editor.gray();
-});
-
-function resizeImgEditor() {
-	var marginWidth = 0.04;
-	var canvasPercent = 1 - (marginWidth * 2);
-	//console.log('Margin Width: ' + marginWidth);
-	//console.log('Canvas Percent: ' + canvasPercent);
-	var newWidth = window.innerWidth;
-	var newHeight = window.innerHeight;
-	//console.log('Width: ' + newWidth + ' - Height: ' + newHeight);
-	var margin = newWidth * marginWidth;
-	//console.log('Margem: ' + margin);
-	var newCanvasWidth = newWidth * canvasPercent;
-	//console.log('Nova Canvas Width: ' + newCanvasWidth);
-	//console.log('Canvas Width: ' + canvasImgEditor.width);
-	var newCanvasScale = newCanvasWidth * 100 / (canvasImgEditor.width) / 100;
-	//console.log('Nova Canvas Scale: ' + newCanvasScale);
-	$(canvasImgEditorID).css({
-		'-webkit-transform' : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'-moz-transform'    : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'-ms-transform'     : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'-o-transform'      : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'transform'         : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')'
-	});
-}
+}*/
 
 ///////// IMG EDITOR FIM
