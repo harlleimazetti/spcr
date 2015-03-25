@@ -97,6 +97,16 @@ imgEditor.prototype.corners = function() {
 		var im = new jsfeat.matrix_t(width, height, jsfeat.U8_t | jsfeat.C1_t);
 		jsfeat.imgproc.grayscale(imageData.data, width, height, im);
 		jsfeat.imgproc.box_blur_gray(im, im, 4, 0);
+		
+		// render result back to canvas
+		var data_u32 = new Uint32Array(imageData.data.buffer);
+		var alpha = (0xff << 24);
+		var i = im.cols*im.rows, pix = 0;
+		while(--i >= 0) {
+			pix = im.data[i];
+			data_u32[i] = alpha | (pix << 16) | (pix << 8) | pix;
+		}
+		ctxImgEditor.putImageData(imageData, 0, 0);
 
 		/*
 		var corners = [],
