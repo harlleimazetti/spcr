@@ -6,6 +6,8 @@ window.addEventListener('orientationchange', resizeImgEditor, false);
 var canvasImgEditorID = '#img_editor_canvas';
 var canvasImgEditor;
 var ctxImgEditor;
+var imgWidth;
+var imgHeight;
 
 function imgEditor() {
 	this.limpa = function() {
@@ -14,28 +16,34 @@ function imgEditor() {
 }
 imgEditor.prototype.carregaImagem = function(img_src) {
 	$(canvasImgEditorID).removeAttr("data-caman-id");
-	Caman(canvasImgEditorID, img_src, function() {
+	/*Caman(canvasImgEditorID, img_src, function() {
 		this.render();
 		resizeImgEditor();
-	});
-	/*var im_tmp = new Image();
+	});*/
+	var im_tmp = new Image();
 	im_tmp.onload = function() {
-		ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
-		resizeImgEditor();
+		imgWidth = this.width;
+		imgHeight = this.height;
+		canvasImgEditor.width = imgWidth;
+		canvasImgEditor.height = imgHeight;
+		//console.log('Width: ' + this.width + ', Height: ' + this.height);
+		var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
+        ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
+		//ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
+		//resizeImgEditor();
+		$(canvasImgEditorID).attr("data-caman-id", "1");
 	}
-	im_tmp.src = img_src;*/
+	im_tmp.src = img_src;
 	/*var myimage = new Image();
     myimage.onload = function() {
-          $('#myImageDiv').html('<img id="my-image" src='+myimage.src+' />');
-          Caman('#my-image', function () {
-                 this.brightness(10);
-                 this.contrast(30);
-                 this.sepia(60);
-                 this.saturation(-30);
+          $('#DivImgEditorCanvas').html('<img id="img_editor_canvas" src='+myimage.src+' />');
+          Caman('#img_editor_canvas', function () {
                  this.render();
+				canvasImgEditor = document.getElementById('img_editor_canvas');
+				ctxImgEditor = canvasImgEditor.getContext('2d');
           });
     }
-    myimage.src = 'images/myimage.jpg';*/
+    myimage.src = img_src;*/
 }
 imgEditor.prototype.rotateRight = function() {
 	Caman(canvasImgEditorID, function() {
@@ -65,17 +73,22 @@ imgEditor.prototype.corners = function() {
 	
 }
 
+function calcRatio(srcWidth, srcHeight, maxWidth, maxHeight) {
+	return(Math.min(maxWidth / srcWidth, maxHeight / srcHeight));
+}
 var editor = new imgEditor();
 
 $(document).on('pagebeforeshow', '#img_editor', function()
 {
-	canvasImgEditor = document.getElementById('img_editor_canvas');
-	ctxImgEditor = canvasImgEditor.getContext('2d');
+	//canvasImgEditor = document.getElementById('img_editor_canvas');
+	//ctxImgEditor = canvasImgEditor.getContext('2d');
 	//editor.carregaImagem(sessionStorage.img_src);
 });
 
 $(document).on('pageshow', '#img_editor', function()
 {
+	canvasImgEditor = document.getElementById('img_editor_canvas');
+	ctxImgEditor = canvasImgEditor.getContext('2d');
 	editor.carregaImagem(sessionStorage.img_src);
 });
 
@@ -112,14 +125,14 @@ function resizeImgEditor() {
 	var newCanvasWidth = newWidth * canvasPercent;
 	//console.log('Nova Canvas Width: ' + newCanvasWidth);
 	//console.log('Canvas Width: ' + canvasImgEditor.width);
-	var newCanvasScale = newCanvasWidth * 100 / (canvasImgEditor.width) / 100;
-	//console.log('Nova Canvas Scale: ' + newCanvasScale);
+	var newCanvasScale = newCanvasWidth / (canvasImgEditor.width);
+	console.log('Nova Canvas Scale: ' + newCanvasScale);
 	$(canvasImgEditorID).css({
-		'-webkit-transform' : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'-moz-transform'    : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'-ms-transform'     : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'-o-transform'      : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'transform'         : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')'
+		'-webkit-transform' : 'scale(' + newCanvasScale + ')',
+		'-moz-transform'    : 'scale(' + newCanvasScale + ')',
+		'-ms-transform'     : 'scale(' + newCanvasScale + ')',
+		'-o-transform'      : 'scale(' + newCanvasScale + ')',
+		'transform'         : 'scale(' + newCanvasScale + ')'
 	});
 }
 
