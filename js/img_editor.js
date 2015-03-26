@@ -71,9 +71,11 @@ $(document).on('pagebeforeshow', '#img_editor', function()
 {
 	canvasImgEditor = document.getElementById('img_editor_canvas');
 	ctxImgEditor = canvasImgEditor.getContext('2d');
-	//console.log('pagebeforeshow');
-	//console.log(sessionStorage.img_src);
-	//console.log(ctxImgEditor);
+	//editor.carregaImagem(sessionStorage.img_src);
+});
+
+$(document).on('pageshow', '#img_editor', function()
+{
 	editor.carregaImagem(sessionStorage.img_src);
 });
 
