@@ -22,10 +22,15 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 	});*/
 	var im_tmp = new Image();
 	im_tmp.onload = function() {
+		/*
 		imgWidth = this.width;
 		imgHeight = this.height;
 		canvasImgEditor.width = imgWidth;
-		canvasImgEditor.height = imgHeight;
+		canvasImgEditor.height = imgHeight;*/
+		imgWidth = 320;
+		imgHeight = 240;
+		canvasImgEditor.width = 320;
+		canvasImgEditor.height = 240;
 		//console.log('Width: ' + this.width + ', Height: ' + this.height);
 		var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
 		//console.log('Ratio: ' + ratio);
@@ -129,11 +134,11 @@ function resizeImgEditor() {
 	var newCanvasScale = newCanvasWidth / (canvasImgEditor.width);
 	//console.log('Nova Canvas Scale: ' + newCanvasScale);
 	$(canvasImgEditorID).css({
-		'-webkit-transform' : 'scale(' + newCanvasScale + ')',
-		'-moz-transform'    : 'scale(' + newCanvasScale + ')',
-		'-ms-transform'     : 'scale(' + newCanvasScale + ')',
-		'-o-transform'      : 'scale(' + newCanvasScale + ')',
-		'transform'         : 'scale(' + newCanvasScale + ')'
+		'-webkit-transform' : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'-moz-transform'    : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'-ms-transform'     : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'-o-transform'      : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'transform'         : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')'
 	});
 }
 
