@@ -133,13 +133,26 @@ function resizeImgEditor() {
 	//console.log('Canvas Width: ' + canvasImgEditor.width);
 	var newCanvasScale = newCanvasWidth / (canvasImgEditor.width);
 	//console.log('Nova Canvas Scale: ' + newCanvasScale);
-	$(canvasImgEditorID).css({
+	/*$(canvasImgEditorID).css({
 		'-webkit-transform' : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
 		'-moz-transform'    : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
 		'-ms-transform'     : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
 		'-o-transform'      : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
 		'transform'         : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')'
-	});
+	});*/
+	var newWidth = window.innerWidth;
+	var canvasPercent = newWidth / imgWidth;
+	var newHeight = imgHeight * canvasPercent;
+	var im_tmp = new Image();
+	im_tmp.onload = function() {
+		imgWidth = newWidth;
+		imgHeight = newHeight;
+		canvasImgEditor.width = newWidth;
+		canvasImgEditor.height = newHeight;
+		var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
+		ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
+	}
+	im_tmp.src = sessionStorage.img_src;
 }
 
 /*imgEditor.prototype.corners = function() {
