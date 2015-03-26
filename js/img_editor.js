@@ -13,18 +13,17 @@ function imgEditor() {
 	}
 }
 imgEditor.prototype.carregaImagem = function(img_src) {
-	/*$(canvasImgEditorID).removeAttr("data-caman-id");
+	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, img_src, function() {
 		this.render();
 		resizeImgEditor();
-	});*/
-	var im_tmp = new Image();
+	});
+	/*var im_tmp = new Image();
 	im_tmp.onload = function() {
 		ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
 		resizeImgEditor();
 	}
-	im_tmp.src = img_src;
-	$(canvasImgEditorID).attr("data-caman-id", "1");
+	im_tmp.src = img_src;*/
 	/*var myimage = new Image();
     myimage.onload = function() {
           $('#myImageDiv').html('<img id="my-image" src='+myimage.src+' />');
@@ -99,7 +98,7 @@ $(document).on('click', '#img_editor #imgEditorBtnGray', function()
 });
 
 function resizeImgEditor() {
-	var marginWidth = 0.04;
+	var marginWidth = 0.00;
 	var canvasPercent = 1 - (marginWidth * 2);
 	//console.log('Margin Width: ' + marginWidth);
 	//console.log('Canvas Percent: ' + canvasPercent);
