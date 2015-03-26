@@ -28,6 +28,7 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 		canvasImgEditor.height = imgHeight;
 		//console.log('Width: ' + this.width + ', Height: ' + this.height);
 		var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
+		//console.log('Ratio: ' + ratio);
         ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
 		//ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
 		//resizeImgEditor();
@@ -80,16 +81,16 @@ var editor = new imgEditor();
 
 $(document).on('pagebeforeshow', '#img_editor', function()
 {
-	//canvasImgEditor = document.getElementById('img_editor_canvas');
-	//ctxImgEditor = canvasImgEditor.getContext('2d');
-	//editor.carregaImagem(sessionStorage.img_src);
+	canvasImgEditor = document.getElementById('img_editor_canvas');
+	ctxImgEditor = canvasImgEditor.getContext('2d');
+	editor.carregaImagem(sessionStorage.img_src);
 });
 
 $(document).on('pageshow', '#img_editor', function()
 {
-	canvasImgEditor = document.getElementById('img_editor_canvas');
-	ctxImgEditor = canvasImgEditor.getContext('2d');
-	editor.carregaImagem(sessionStorage.img_src);
+	//canvasImgEditor = document.getElementById('img_editor_canvas');
+	//ctxImgEditor = canvasImgEditor.getContext('2d');
+	//editor.carregaImagem(sessionStorage.img_src);
 });
 
 $(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
@@ -126,7 +127,7 @@ function resizeImgEditor() {
 	//console.log('Nova Canvas Width: ' + newCanvasWidth);
 	//console.log('Canvas Width: ' + canvasImgEditor.width);
 	var newCanvasScale = newCanvasWidth / (canvasImgEditor.width);
-	console.log('Nova Canvas Scale: ' + newCanvasScale);
+	//console.log('Nova Canvas Scale: ' + newCanvasScale);
 	$(canvasImgEditorID).css({
 		'-webkit-transform' : 'scale(' + newCanvasScale + ')',
 		'-moz-transform'    : 'scale(' + newCanvasScale + ')',
