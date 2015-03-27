@@ -1,7 +1,7 @@
 ///////// IMG EDITOR INÍCIO
 
-window.addEventListener('resize', resizeImgEditor, false);
-window.addEventListener('orientationchange', resizeImgEditor, false);
+//window.addEventListener('resize', resizeImgEditor, false);
+//window.addEventListener('orientationchange', resizeImgEditor, false);
 
 var canvasImgEditorID = '#img_editor_canvas';
 var canvasImgEditor;
@@ -86,9 +86,38 @@ var editor = new imgEditor();
 
 $(document).on('pagebeforeshow', '#img_editor', function()
 {
+	/*
 	canvasImgEditor = document.getElementById('img_editor_canvas');
 	ctxImgEditor = canvasImgEditor.getContext('2d');
 	editor.carregaImagem(sessionStorage.img_src);
+	*/
+	var im_tmp = new Image();
+	im_tmp.onload = function() {
+		$('#target').attr('src', this.src);
+		var dkrm = new Darkroom('#target', {
+		  // Size options
+		  minWidth: 100,
+		  minHeight: 100,
+		  maxWidth: 650,
+		  maxHeight: 500,
+	
+		  plugins: {
+			//save: false,
+			crop: {
+			  quickCropKey: 67, //key "c"
+			  //minHeight: 50,
+			  //minWidth: 50,
+			  //ratio: 1
+			}
+		  },
+		  init: function() {
+			var cropPlugin = this.getPlugin('crop');
+			cropPlugin.selectZone(170, 25, 300, 300);
+			//cropPlugin.requireFocus();
+		  }
+		});
+	}
+	im_tmp.src = sessionStorage.img_src;
 });
 
 $(document).on('pageshow', '#img_editor', function()
