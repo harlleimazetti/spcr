@@ -38,16 +38,6 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 	Caman(canvasImgEditorID, function() {
 		this.render();
 	});
-	/*var myimage = new Image();
-    myimage.onload = function() {
-          $('#DivImgEditorCanvas').html('<img id="img_editor_canvas" src='+myimage.src+' />');
-          Caman('#img_editor_canvas', function () {
-                 this.render();
-				canvasImgEditor = document.getElementById('img_editor_canvas');
-				ctxImgEditor = canvasImgEditor.getContext('2d');
-          });
-    }
-    myimage.src = img_src;*/
 }
 imgEditor.prototype.rotateRight = function() {
 	Caman(canvasImgEditorID, function() {
@@ -134,13 +124,13 @@ $(document).on('pageshow', '#img_editor', function()
 
 $(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
 {
-	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
+	editor.resize(canvasImgEditor.height, canvasImgEditor.width);
 	editor.rotateRight();
 });
 
 $(document).on('click', '#img_editor #imgEditorBtnRotateLeft', function()
 {
-	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
+	editor.resize(canvasImgEditor.height, canvasImgEditor.width);
 	editor.rotateLeft();
 });
 $(document).on('click', '#img_editor #imgEditorBtnFindCorners', function()
