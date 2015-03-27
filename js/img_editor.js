@@ -110,16 +110,16 @@ var editor = new imgEditor();
 
 $(document).on('pagebeforeshow', '#img_editor', function()
 {
-	canvasImgEditor = document.getElementById('img_editor_canvas');
-	ctxImgEditor = canvasImgEditor.getContext('2d');
-	editor.carregaImagem(sessionStorage.img_src);
+	//canvasImgEditor = document.getElementById('img_editor_canvas');
+	//ctxImgEditor = canvasImgEditor.getContext('2d');
+	//editor.carregaImagem(sessionStorage.img_src);
 });
 
 $(document).on('pageshow', '#img_editor', function()
 {
-	//canvasImgEditor = document.getElementById('img_editor_canvas');
-	//ctxImgEditor = canvasImgEditor.getContext('2d');
-	//editor.carregaImagem(sessionStorage.img_src);
+	canvasImgEditor = document.getElementById('img_editor_canvas');
+	ctxImgEditor = canvasImgEditor.getContext('2d');
+	editor.carregaImagem(sessionStorage.img_src);
 });
 
 $(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
