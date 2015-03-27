@@ -1565,26 +1565,25 @@
 		<div data-role="panel" data-position="right" data-display="overlay" id="imgEditorPanel" data-theme="a">
         	<h3>Ajustes</h3>
             <div data-role="fieldcontain">
-				<label for="slider-1">Brilho:</label>
-				<input type="range" name="slider-1" id="slider-1" min="0" max="100" value="50">
+				<label for="imgEditorBrightness">Brilho:</label>
+				<input type="range" name="imgEditorBrightness" id="imgEditorBrightness" min="-100" max="100" value="0">
 			</div>
             <div data-role="fieldcontain">
-				<label for="slider-2">Contraste:</label>
-				<input type="range" name="slider-2" id="slider-2" min="0" max="100" value="50">
+				<label for="imgEditorContrast">Contraste:</label>
+				<input type="range" name="imgEditorContrast" id="imgEditorContrast" min="-100" max="100" value="0">
 			</div>
 			<div data-role="fieldcontain">
-				<label for="slider-3">Threshold:</label>
-				<input type="range" name="slider-3" id="slider-3" min="0" max="100" value="50">
+				<label for="imgEditorThreshold">Threshold:</label>
+				<input type="range" name="imgEditorThreshold" id="imgEditorThreshold" min="0" max="255" value="60">
 			</div>
             <h3>Filtros</h3>
             <button id="imgEditorBtnBlur">Blur</button>
-            <button id="imgEditorBtnSharpen">Sharpen</button>
             <button id="imgEditorBtnEdges">Edges</button>
 		</div><!-- /panel -->
         
 		<div data-role="header" data-position="fixed">
 			<a href="#" data-icon="arrow-l" data-rel="back">Voltar</a>
-			<h1>Editor de Imagem - 2</h1>
+			<h1>Editor de Imagem</h1>
             <a href="#" data-icon="plus" id="btn_img_editor_salvar">Salvar</a>
 			<div data-role="navbar">
 				<ul>

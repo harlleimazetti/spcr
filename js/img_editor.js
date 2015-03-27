@@ -16,10 +16,6 @@ function imgEditor() {
 }
 imgEditor.prototype.carregaImagem = function(img_src) {
 	$(canvasImgEditorID).removeAttr("data-caman-id");
-	/*Caman(canvasImgEditorID, img_src, function() {
-		this.render();
-		resizeImgEditor();
-	});*/
 	var im_tmp = new Image();
 	im_tmp.onload = function() {
 		/*
@@ -37,9 +33,11 @@ imgEditor.prototype.carregaImagem = function(img_src) {
         ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
 		//ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
 		//resizeImgEditor();
-		$(canvasImgEditorID).attr("data-caman-id", "1");
 	}
 	im_tmp.src = img_src;
+	Caman(canvasImgEditorID, function() {
+		this.render();
+	});
 	/*var myimage = new Image();
     myimage.onload = function() {
           $('#DivImgEditorCanvas').html('<img id="img_editor_canvas" src='+myimage.src+' />');
@@ -72,6 +70,42 @@ imgEditor.prototype.resize = function(width, height) {
 imgEditor.prototype.gray = function() {
 	Caman(canvasImgEditorID, function() {
 		this.greyscale();
+		this.render();
+	});
+}
+imgEditor.prototype.brightness = function(val) {
+	Caman(canvasImgEditorID, function() {
+		this.brightness(val);
+		this.render();
+	});
+}
+imgEditor.prototype.contrast = function(val) {
+	Caman(canvasImgEditorID, function() {
+		this.contrast(val);
+		this.render();
+	});
+}
+imgEditor.prototype.threshold = function(val) {
+	Caman(canvasImgEditorID, function() {
+		this.threshold(val);
+		this.render();
+	});
+}
+imgEditor.prototype.blur = function() {
+	Caman(canvasImgEditorID, function() {
+		this.boxBlur();
+		this.render();
+	});
+}
+imgEditor.prototype.edges = function() {
+	Caman(canvasImgEditorID, function() {
+		this.edgeDetect();
+		this.render();
+	});
+}
+imgEditor.prototype.revert = function() {
+	Caman(canvasImgEditorID, function() {
+		this.revert();
 		this.render();
 	});
 }
@@ -117,6 +151,27 @@ $(document).on('click', '#img_editor #imgEditorBtnGray', function()
 {
 	editor.gray();
 });
+$(document).on('click', '#img_editor #imgEditorBtnBlur', function()
+{
+	editor.blur();
+});
+$(document).on('click', '#img_editor #imgEditorBtnEdges', function()
+{
+	editor.edges();
+});
+$(document).on('click', '#img_editor #imgEditorBtnRevert', function()
+{
+	editor.revert();
+});
+$(document).on('slidestop', '#imgEditorBrightness', function() {
+	editor.brightness($(this).val());
+});
+$(document).on('slidestop', '#imgEditorContrast', function() {
+	editor.contrast($(this).val());
+});
+$(document).on('slidestop', '#imgEditorThreshold', function() {
+	editor.threshold($(this).val());
+});
 
 function resizeImgEditor() {
 	var marginWidth = 0.00;
@@ -151,6 +206,13 @@ function resizeImgEditor() {
 		canvasImgEditor.height = newHeight;
 		var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
 		ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
+		Caman(canvasImgEditorID, function() {
+			this.resize({
+				width: newWidth,
+				height: newHeight
+			});
+			this.render();
+		});
 	}
 	im_tmp.src = sessionStorage.img_src;
 }
