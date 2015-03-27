@@ -28,14 +28,11 @@
     <script src="js/draggabilly/draggabilly.pkgd.min.js"></script>
     <script src="js/transit/jquery.transit.min.js"></script>
     <script src="js/camanjs/caman.full.js"></script>
-    <script src="js/fabric/fabric.js"></script>
-    <script src="js/fabric/darkroom.min.js"></script>
     <!-- <script src="js/jsfeat/jsfeat-min.js"></script> -->
     
     <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
     <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css" />
     <link rel="stylesheet" href="css/font-awesome/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/darkroom.min.css" />
     <link rel="stylesheet" href="css/spcr.css" />
     
     <meta charset="utf-8">
@@ -1566,7 +1563,23 @@
     
 	<div data-role="page" id="img_editor" data-theme="a">
 		<div data-role="panel" data-position="right" data-display="overlay" id="imgEditorPanel" data-theme="a">
-        	<button id="imgEditorBtnGray">Escala de Cinza</button>
+        	<h3>Ajustes</h3>
+            <div data-role="fieldcontain">
+				<label for="slider-1">Brilho:</label>
+				<input type="range" name="slider-1" id="slider-1" min="0" max="100" value="50">
+			</div>
+            <div data-role="fieldcontain">
+				<label for="slider-2">Contraste:</label>
+				<input type="range" name="slider-2" id="slider-2" min="0" max="100" value="50">
+			</div>
+			<div data-role="fieldcontain">
+				<label for="slider-3">Threshold:</label>
+				<input type="range" name="slider-3" id="slider-3" min="0" max="100" value="50">
+			</div>
+            <h3>Filtros</h3>
+            <button id="imgEditorBtnBlur">Blur</button>
+            <button id="imgEditorBtnSharpen">Sharpen</button>
+            <button id="imgEditorBtnEdges">Edges</button>
 		</div><!-- /panel -->
         
 		<div data-role="header" data-position="fixed">
@@ -1577,7 +1590,7 @@
 				<ul>
 					<li id="imgEditorBtnRotateLeft"><a href="#"><i class="icon-rotate-left icon-2x"></i></a></li>
                     <li id="imgEditorBtnRotateRight"><a href="#"><i class="icon-rotate-right icon-2x"></i></a></li>
-					<li id="imgEditorBtnFindCorners"><a href="#"><i class="icon-check-empty icon-2x"></i></a></li>
+					<li id="imgEditorBtnGray"><a href="#"><i class="icon-circle-blank icon-2x"></i></a></li>
                     <li id="imgEditorBtnCrop"><a href="#"><i class="icon-crop icon-2x"></i></a></li>
                     <li id="imgEditorBtnPanel"><a href="#imgEditorPanel"><i class="icon-ellipsis-vertical icon-2x"></i></a></li>
 				</ul>
