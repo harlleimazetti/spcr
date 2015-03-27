@@ -10,9 +10,10 @@ var imgWidth;
 var imgHeight;
 
 function imgEditor() {
-	this.limpa = function() {
-		ctxImgEditor.clearRect(0, 0, canvasImgEditor.width, canvasImgEditor.height);	
-	}
+
+}
+imgEditor.prototype.limpa = function() {
+	ctxImgEditor.clearRect(0, 0, canvasImgEditor.width, canvasImgEditor.height);	
 }
 imgEditor.prototype.carregaImagem = function(img_src) {
 	$(canvasImgEditorID).removeAttr("data-caman-id");
@@ -33,7 +34,7 @@ imgEditor.prototype.carregaImagem = function(img_src) {
         ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
 		//ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
 		//resizeImgEditor();
-		$(canvasImgEditorID).attr("data-caman-id","1");
+		$(canvasImgEditorID).attr("data-caman-id", "1");
 	}
 	im_tmp.src = img_src;
 	/*Caman(canvasImgEditorID, function() {
@@ -109,6 +110,7 @@ imgEditor.prototype.corners = function() {
 function calcRatio(srcWidth, srcHeight, maxWidth, maxHeight) {
 	return(Math.min(maxWidth / srcWidth, maxHeight / srcHeight));
 }
+
 var editor = new imgEditor();
 
 $(document).on('pagebeforeshow', '#img_editor', function()
@@ -146,7 +148,7 @@ $(document).on('click', '#img_editor #imgEditorBtnGray', function()
 });
 $(document).on('click', '#img_editor #imgEditorBtnCrop', function()
 {
-	alert('teste');
+	alert('Iniciar Edição');
 	Caman(canvasImgEditorID, function() {
 		this.render();
 	});
