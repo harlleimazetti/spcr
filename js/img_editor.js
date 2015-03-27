@@ -19,11 +19,6 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 	$(canvasImgEditorID).removeAttr("data-caman-id");
 	var im_tmp = new Image();
 	im_tmp.onload = function() {
-		/*
-		imgWidth = this.width;
-		imgHeight = this.height;
-		canvasImgEditor.width = imgWidth;
-		canvasImgEditor.height = imgHeight;*/
 		imgWidth = 320;
 		imgHeight = 240;
 		canvasImgEditor.width = 320;
