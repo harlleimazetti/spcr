@@ -54,56 +54,48 @@ imgEditor.prototype.rotateLeft = function() {
 	});
 }
 imgEditor.prototype.resize = function(width, height) {
-	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, function() {
 		this.resize({width: width, height: height});
 		this.render();
 	});
 }
 imgEditor.prototype.gray = function() {
-	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, function() {
 		this.greyscale();
 		this.render();
 	});
 }
 imgEditor.prototype.brightness = function(val) {
-	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, function() {
 		this.brightness(val);
 		this.render();
 	});
 }
 imgEditor.prototype.contrast = function(val) {
-	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, function() {
 		this.contrast(val);
 		this.render();
 	});
 }
 imgEditor.prototype.threshold = function(val) {
-	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, function() {
 		this.threshold(val);
 		this.render();
 	});
 }
 imgEditor.prototype.blur = function() {
-	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, function() {
 		this.boxBlur();
 		this.render();
 	});
 }
 imgEditor.prototype.edges = function() {
-	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, function() {
 		this.edgeDetect();
 		this.render();
 	});
 }
 imgEditor.prototype.revert = function() {
-	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, function() {
 		this.revert();
 		this.render();
@@ -208,14 +200,13 @@ function resizeImgEditor() {
 		ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
 	}
 	im_tmp.src = sessionStorage.img_src;
-	$(canvasImgEditorID).removeAttr("data-caman-id");
-		Caman(canvasImgEditorID, function() {
-			/*this.resize({
-				width: newWidth,
-				height: newHeight
-			});*/
-			this.render();
-		});
+	Caman(canvasImgEditorID, function() {
+		/*this.resize({
+			width: newWidth,
+			height: newHeight
+		});*/
+		this.render();
+	});
 }
 
 /*imgEditor.prototype.corners = function() {
