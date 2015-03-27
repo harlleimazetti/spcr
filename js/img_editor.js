@@ -16,6 +16,7 @@ imgEditor.prototype.limpa = function() {
 	ctxImgEditor.clearRect(0, 0, canvasImgEditor.width, canvasImgEditor.height);	
 }
 imgEditor.prototype.carregaImagem = function(img_src) {
+	/*
 	$(canvasImgEditorID).removeAttr("data-caman-id");
 	var im_tmp = new Image();
 	im_tmp.onload = function() {
@@ -32,9 +33,24 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 		$(canvasImgEditorID).attr("data-caman-id", "1");
 	}
 	im_tmp.src = img_src;
-	/*Caman(canvasImgEditorID, function() {
+	*/
+	Caman(canvasImgEditorID, function() {
 		this.render();
-	});*/
+		var im_tmp = new Image();
+		im_tmp.onload = function() {
+			imgWidth = 320;
+			imgHeight = 240;
+			canvasImgEditor.width = 320;
+			canvasImgEditor.height = 240;
+			//console.log('Width: ' + this.width + ', Height: ' + this.height);
+			var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
+			//console.log('Ratio: ' + ratio);
+    	    ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
+			//ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
+			//resizeImgEditor();
+		}
+		im_tmp.src = img_src;
+	});
 }
 imgEditor.prototype.rotateRight = function() {
 	Caman(canvasImgEditorID, function() {
