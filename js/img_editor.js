@@ -35,9 +35,9 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 		//resizeImgEditor();
 	}
 	im_tmp.src = img_src;
-	Caman(canvasImgEditorID, function() {
+	/*Caman(canvasImgEditorID, function() {
 		this.render();
-	});
+	});*/
 }
 imgEditor.prototype.rotateRight = function() {
 	$(canvasImgEditorID).removeAttr("data-caman-id");
@@ -126,13 +126,13 @@ $(document).on('pageshow', '#img_editor', function()
 
 $(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
 {
-	editor.resize(canvasImgEditor.height, canvasImgEditor.width);
+	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
 	editor.rotateRight();
 });
 
 $(document).on('click', '#img_editor #imgEditorBtnRotateLeft', function()
 {
-	editor.resize(canvasImgEditor.height, canvasImgEditor.width);
+	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
 	editor.rotateLeft();
 });
 $(document).on('click', '#img_editor #imgEditorBtnFindCorners', function()
@@ -142,6 +142,13 @@ $(document).on('click', '#img_editor #imgEditorBtnFindCorners', function()
 $(document).on('click', '#img_editor #imgEditorBtnGray', function()
 {
 	editor.gray();
+});
+$(document).on('click', '#img_editor #imgEditorBtnCrop', function()
+{
+	alert('teste');
+	Caman(canvasImgEditorID, function() {
+		this.render();
+	});
 });
 $(document).on('click', '#img_editor #imgEditorBtnBlur', function()
 {
@@ -200,13 +207,6 @@ function resizeImgEditor() {
 		ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
 	}
 	im_tmp.src = sessionStorage.img_src;
-	Caman(canvasImgEditorID, function() {
-		/*this.resize({
-			width: newWidth,
-			height: newHeight
-		});*/
-		this.render();
-	});
 }
 
 /*imgEditor.prototype.corners = function() {
