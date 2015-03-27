@@ -33,6 +33,7 @@ imgEditor.prototype.carregaImagem = function(img_src) {
         ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
 		//ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
 		//resizeImgEditor();
+		$(canvasImgEditorID).attr("data-caman-id","1");
 	}
 	im_tmp.src = img_src;
 	/*Caman(canvasImgEditorID, function() {
