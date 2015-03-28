@@ -34,7 +34,7 @@
 	content: "\e600";
 }
 .img-editor-canvas {
-	display:block;
+	/*display:block;*/
 	margin-left:auto;
 	margin-right:auto;
 	/*-webkit-transform: scale(0.33, 0.33);
