@@ -20,7 +20,7 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 	canvasID = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10);
 	canvasImgEditorID = '#' + canvasID;
 	$(canvasImgEditorDIV).html('<canvas id="' + canvasID + '" class="img-editor-canvas"></canvas>');
-	$(canvasImgEditorID).removeAttr("data-caman-id");
+	//$(canvasImgEditorID).removeAttr("data-caman-id");
 	canvasImgEditor = document.getElementById(canvasID);
 	ctxImgEditor = canvasImgEditor.getContext('2d');
 	Caman(canvasImgEditorID, function() {
@@ -39,7 +39,7 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 			//console.log('Ratio: ' + ratio);
     	    ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
 			//resizeImgEditor();
-			$(canvasImgEditorID).attr("data-caman-id", canvasID);
+			//$(canvasImgEditorID).attr("data-caman-id", canvasID);
 		}
 		im_tmp.src = img_src;
 	});
