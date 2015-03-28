@@ -33,7 +33,7 @@
 .icone-arma_fogo:before {
 	content: "\e600";
 }
-#img_editor_canvas {
+.img-editor-canvas {
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
