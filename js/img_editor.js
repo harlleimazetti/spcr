@@ -30,10 +30,10 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 			var newWidth = window.innerWidth * 0.7;
 			var canvasPercent = newWidth / this.width;
 			var newHeight = this.height * canvasPercent;
-			imgWidth = newWidth;
-			imgHeight = newHeight;
-			canvasImgEditor.width = newWidth;
-			canvasImgEditor.height = newHeight;
+			imgWidth = 500;//newWidth;
+			imgHeight = 375;//newHeight;
+			canvasImgEditor.width = 500;//newWidth;
+			canvasImgEditor.height = 375;//newHeight;
 			//console.log('Width: ' + this.width + ', Height: ' + this.height);
 			var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
 			//console.log('Ratio: ' + ratio);
