@@ -132,7 +132,29 @@ $(document).on('pagebeforeshow', '#img_editor', function()
 {
 	canvasImgEditor = document.getElementById('img_editor_canvas');
 	ctxImgEditor = canvasImgEditor.getContext('2d');
-	editor.carregaImagem(sessionStorage.img_src);
+	//editor.carregaImagem(sessionStorage.img_src);
+	var canvasID = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10);
+	$(canvasImgEditorID).removeAttr("data-caman-id");
+	Caman(canvasImgEditorID, function() {
+		this.render();
+		var im_tmp = new Image();
+		im_tmp.onload = function() {
+			var newWidth = window.innerWidth * 0.7;
+			var canvasPercent = newWidth / this.width;
+			var newHeight = this.height * canvasPercent;
+			imgWidth = newWidth;
+			imgHeight = newHeight;
+			canvasImgEditor.width = newWidth;
+			canvasImgEditor.height = newHeight;
+			//console.log('Width: ' + this.width + ', Height: ' + this.height);
+			var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
+			//console.log('Ratio: ' + ratio);
+    	    ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
+			//resizeImgEditor();
+			$(canvasImgEditorID).attr("data-caman-id", canvasID);
+		}
+		im_tmp.src = sessionStorage.img_src;
+	});
 });
 
 $(document).on('pageshow', '#img_editor', function()
@@ -145,21 +167,33 @@ $(document).on('pageshow', '#img_editor', function()
 $(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
 {
 	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
-	editor.rotateRight();
+	//editor.rotateRight();
+	Caman(canvasImgEditorID, function() {
+		this.rotate(90);
+		this.render();
+	});
 });
 
 $(document).on('click', '#img_editor #imgEditorBtnRotateLeft', function()
 {
 	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
-	editor.rotateLeft();
+	//editor.rotateLeft();
+	Caman(canvasImgEditorID, function() {
+		this.rotate(-90);
+		this.render();
+	});
 });
 $(document).on('click', '#img_editor #imgEditorBtnFindCorners', function()
 {
-	editor.corners();
+	//editor.corners();
 });
 $(document).on('click', '#img_editor #imgEditorBtnGray', function()
 {
-	editor.gray();
+	//editor.gray();
+	Caman(canvasImgEditorID, function() {
+		this.greyscale();
+		this.render();
+	});
 });
 $(document).on('click', '#img_editor #imgEditorBtnCrop', function()
 {
@@ -170,24 +204,51 @@ $(document).on('click', '#img_editor #imgEditorBtnCrop', function()
 });
 $(document).on('click', '#img_editor #imgEditorBtnBlur', function()
 {
-	editor.blur();
+	//editor.blur();
+	Caman(canvasImgEditorID, function() {
+		this.boxBlur();
+		this.render();
+	});
 });
 $(document).on('click', '#img_editor #imgEditorBtnEdges', function()
 {
-	editor.edges();
+	//editor.edges();
+	Caman(canvasImgEditorID, function() {
+		this.edgeDetect();
+		this.render();
+	});
 });
 $(document).on('click', '#img_editor #imgEditorBtnRevert', function()
 {
-	editor.revert();
+	//editor.revert();
+	Caman(canvasImgEditorID, function() {
+		this.revert();
+		this.render();
+	});
 });
 $(document).on('slidestop', '#imgEditorBrightness', function() {
-	editor.brightness($(this).val());
+	//editor.brightness($(this).val());
+	var val = $(this).val();
+	Caman(canvasImgEditorID, function() {
+		this.brightness(val);
+		this.render();
+	});
 });
 $(document).on('slidestop', '#imgEditorContrast', function() {
-	editor.contrast($(this).val());
+	//editor.contrast($(this).val());
+	var val = $(this).val();
+	Caman(canvasImgEditorID, function() {
+		this.contrast(val);
+		this.render();
+	});
 });
 $(document).on('slidestop', '#imgEditorThreshold', function() {
-	editor.threshold($(this).val());
+	//editor.threshold($(this).val());
+	var val = $(this).val();
+	Caman(canvasImgEditorID, function() {
+		this.threshold(val);
+		this.render();
+	});
 });
 
 function resizeImgEditor() {
