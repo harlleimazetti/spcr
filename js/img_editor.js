@@ -134,7 +134,7 @@ $(document).on('pagebeforeshow', '#img_editor', function()
 	ctxImgEditor = canvasImgEditor.getContext('2d');
 	//editor.carregaImagem(sessionStorage.img_src);
 	var canvasID = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10);
-	$(canvasImgEditorID).removeAttr("data-caman-id");
+	//$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, function() {
 		this.render();
 		var im_tmp = new Image();
@@ -151,7 +151,7 @@ $(document).on('pagebeforeshow', '#img_editor', function()
 			//console.log('Ratio: ' + ratio);
     	    ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
 			//resizeImgEditor();
-			$(canvasImgEditorID).attr("data-caman-id", canvasID);
+			//$(canvasImgEditorID).attr("data-caman-id", canvasID);
 		}
 		im_tmp.src = sessionStorage.img_src;
 	});
