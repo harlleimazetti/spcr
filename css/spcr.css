@@ -35,10 +35,8 @@
 }
 #img_editor_canvas {
 	display:block;
-	border: 1px solid #FFF;
-	position:absolute;
-	top:0;
-	left:0;
+	margin-left:auto;
+	margin-right:auto;
 	/*-webkit-transform: scale(0.33, 0.33);
 	-moz-transform: scale(0.33, 0.33);
 	-ms-transform: scale(0.33, 0.33);

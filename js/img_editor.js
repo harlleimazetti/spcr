@@ -16,6 +16,28 @@ imgEditor.prototype.limpa = function() {
 	ctxImgEditor.clearRect(0, 0, canvasImgEditor.width, canvasImgEditor.height);	
 }
 imgEditor.prototype.carregaImagem = function(img_src) {
+	var canvasID = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10);
+	$(canvasImgEditorID).removeAttr("data-caman-id");
+	Caman(canvasImgEditorID, function() {
+		this.render();
+		var im_tmp = new Image();
+		im_tmp.onload = function() {
+			var newWidth = window.innerWidth * 0.7;
+			var canvasPercent = newWidth / this.width;
+			var newHeight = this.height * canvasPercent;
+			imgWidth = newWidth;
+			imgHeight = newHeight;
+			canvasImgEditor.width = newWidth;
+			canvasImgEditor.height = newHeight;
+			//console.log('Width: ' + this.width + ', Height: ' + this.height);
+			var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
+			//console.log('Ratio: ' + ratio);
+    	    ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
+			//resizeImgEditor();
+			$(canvasImgEditorID).attr("data-caman-id", canvasID);
+		}
+		im_tmp.src = img_src;
+	});
 	/*
 	$(canvasImgEditorID).removeAttr("data-caman-id");
 	var im_tmp = new Image();
@@ -34,23 +56,6 @@ imgEditor.prototype.carregaImagem = function(img_src) {
 	}
 	im_tmp.src = img_src;
 	*/
-	Caman(canvasImgEditorID, function() {
-		this.render();
-		var im_tmp = new Image();
-		im_tmp.onload = function() {
-			imgWidth = 320;
-			imgHeight = 240;
-			canvasImgEditor.width = 320;
-			canvasImgEditor.height = 240;
-			//console.log('Width: ' + this.width + ', Height: ' + this.height);
-			var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
-			//console.log('Ratio: ' + ratio);
-    	    ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
-			//ctxImgEditor.drawImage(im_tmp, 0, 0, 320, 240);
-			//resizeImgEditor();
-		}
-		im_tmp.src = img_src;
-	});
 }
 imgEditor.prototype.rotateRight = function() {
 	Caman(canvasImgEditorID, function() {
@@ -124,16 +129,16 @@ var editor = new imgEditor();
 
 $(document).on('pagebeforeshow', '#img_editor', function()
 {
-	//canvasImgEditor = document.getElementById('img_editor_canvas');
-	//ctxImgEditor = canvasImgEditor.getContext('2d');
-	//editor.carregaImagem(sessionStorage.img_src);
+	canvasImgEditor = document.getElementById('img_editor_canvas');
+	ctxImgEditor = canvasImgEditor.getContext('2d');
+	editor.carregaImagem(sessionStorage.img_src);
 });
 
 $(document).on('pageshow', '#img_editor', function()
 {
-	canvasImgEditor = document.getElementById('img_editor_canvas');
-	ctxImgEditor = canvasImgEditor.getContext('2d');
-	editor.carregaImagem(sessionStorage.img_src);
+	//canvasImgEditor = document.getElementById('img_editor_canvas');
+	//ctxImgEditor = canvasImgEditor.getContext('2d');
+	//editor.carregaImagem(sessionStorage.img_src);
 });
 
 $(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
@@ -185,6 +190,7 @@ $(document).on('slidestop', '#imgEditorThreshold', function() {
 });
 
 function resizeImgEditor() {
+	/*
 	var marginWidth = 0.00;
 	var canvasPercent = 1 - (marginWidth * 2);
 	//console.log('Margin Width: ' + marginWidth);
@@ -205,7 +211,8 @@ function resizeImgEditor() {
 		'-ms-transform'     : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
 		'-o-transform'      : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
 		'transform'         : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')'
-	});*/
+	});
+	*/
 	var newWidth = window.innerWidth;
 	var canvasPercent = newWidth / imgWidth;
 	var newHeight = imgHeight * canvasPercent;
