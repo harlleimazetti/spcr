@@ -17,6 +17,7 @@ imgEditor.prototype.limpa = function() {
 }
 imgEditor.prototype.carregaImagem = function(img_src) {
 	var canvasID = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10);
+	alert(canvasID);
 	$(canvasImgEditorID).removeAttr("data-caman-id");
 	Caman(canvasImgEditorID, function() {
 		this.render();
