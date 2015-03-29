@@ -233,6 +233,11 @@ function resizeImgEditor() {
 		canvasImgEditor.height = newHeight;
 		var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
 		ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
+		//console.log('Ratio: ' + ratio);
+		//console.log('imgWidth: ' + imgWidth);
+		//console.log('imgHeight: ' + imgHeight);
+		//console.log('imgWidth * ratio: ' + (imgWidth * ratio));
+		//console.log('imgHeight * ratio: ' + (imgHeight * ratio));
 	}
 	im_tmp.src = sessionStorage.img_src;
 }
