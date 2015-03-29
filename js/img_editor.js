@@ -1,7 +1,7 @@
 ///////// IMG EDITOR INÍCIO
 
-//window.addEventListener('resize', resizeImgEditor, false);
-//window.addEventListener('orientationchange', resizeImgEditor, false);
+window.addEventListener('resize', resizeImgEditor, false);
+window.addEventListener('orientationchange', resizeImgEditor, false);
 
 var canvasImgEditorID;// = '#img_editor_canvas';
 var canvasImgEditorDIV = '#img_editor_canvas_div';
