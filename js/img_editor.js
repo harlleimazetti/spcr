@@ -19,7 +19,7 @@ imgEditor.prototype.limpa = function() {
 imgEditor.prototype.carregaImagem = function(img_src) {
 	canvasID = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10);
 	canvasImgEditorID = '#' + canvasID;
-	$(canvasImgEditorDIV).html('<canvas id="' + canvasID + '" class="img-editor-canvas"></canvas>');
+	$(canvasImgEditorDIV).html('<canvas id="' + canvasID + '" class="img-editor-canvas" width="500" height="375"></canvas>');
 	//$(canvasImgEditorID).removeAttr("data-caman-id");
 	canvasImgEditor = document.getElementById(canvasID);
 	ctxImgEditor = canvasImgEditor.getContext('2d');
