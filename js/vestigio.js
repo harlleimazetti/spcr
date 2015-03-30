@@ -343,8 +343,8 @@ $(document).on('click', '#visualizacao_imagem', function()
 {
 	var img_src = $(this).attr('src');
 	sessionStorage.img_src = img_src;
-	console.log('clique na imagem');
-	console.log(sessionStorage.img_src);
+	//console.log('clique na imagem');
+	//console.log(sessionStorage.img_src);
 	$.mobile.changePage( "#img_editor", {transition : 'none'} );
 });
 

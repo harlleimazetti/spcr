@@ -104,14 +104,20 @@
 						<p>Configurações</p>
 					</a>
 				</li>
+				<li class="ui-icon-nodisc" data-iconshadow="false">
+                	<i class="icon-file-text icone"></i>
+					<a href="#laudo">
+						<p>Laudo</p>
+					</a>
+				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false" id="menu_transmitir_dados">
-                	<i class="icon-refresh icone"></i>
+                	<i class="icon-upload icone"></i>
 					<a href="#">
 						<p>Transmitir Dados</p>
 					</a>
 				</li>
 				<li class="ui-icon-nodisc" data-iconshadow="false" id="menu_receber_dados">
-                	<i class="icon-refresh icone"></i>
+                	<i class="icon-download icone"></i>
 					<a href="#">
 						<p>Receber Dados</p>
 					</a>
@@ -1567,98 +1573,54 @@
         
 	</div><!-- /page -->
 
-	<div data-role="page" id="laudo" data-theme="a">
-		<div data-role="header" data-position="fixed">
+	<div data-role="page" id="laudo" data-theme="c">
+		<div data-role="header" data-position="fixed" data-theme="a">
 			<a href="#" data-icon="arrow-l" data-rel="back">Voltar</a>
 			<h1>Laudo Pericial</h1>
             <a href="#" data-icon="plus" id="btn_img_editor_salvar">Salvar</a>
 		</div><!-- /header -->
     	<div data-role="content" data-theme="c">
-<h1>NATUREZA DO EXAME: FURTO QUALIFICADO</h1>
-
-<h2>LAUDO</h2>
-
-Aos, < dia> de <mês> de <ano >, na cidade de <cidade do IC > e no INSTITUTO DE 
-
-CRIMINALISTICA, da Superintendência de Policia Técnico-Cientifica, da Secretaria 
-
-da Segurança Pública do Estado de São Paulo, de conformidade com o dispositivo no 
-
-artigo 178 do Decreto-lei n§ 3.689, de 3 de outubro de 1941, pelo Perto Criminal Titular 
-
-deste I.C., Dr. < >, foram designados o Perito Criminal < Nome do Perito> para proceder 
-
-o exame supra-especificado, em atendimento requisição da <numero da delegacia > o
-
-Delegacia de Policia de < cidade da delegacia>.
-
-DO LOCAL E DOS EXAMES:
-
-O local examinado, situado à rua < > , n ̊ < > ,bairro < >, na cidade de < > de um 
-
-imóvel destinado a função < >, construído ao < nível da via> e seguindo o alinhamento 
-
-normalizado dos demais imóveis.
-
-O imóvel era vedado em seus limites por <muro de alvenaria/ cerca de arame/ 
-
-grades metálicas> com uma altura total de <X> metros.
-
-O acesso regular era obtido por <portão metálico> situado na <posição> que era 
-
-guarnecido por <fechadura/ cadeado> da marca <ZZZZ>.
-
-No caso, o acesso ao interior do terreno deu-se pela <escalada do muro/ cerca/ 
-
-grade> a partir <do XXX> e usando <o XXX como apoio> <arrombamento da folha e do 
-
-batente do portão com o uso de instrumento a guisa de alavanca> .
-
-O acesso ao interior do prédio que, ocupava a região centro direita/ esquerda do 
-
-terreno) e possuía um corredor lateral à direita/ esquerda, deu pela (escalada do muro/ 
-
-cerca/ grade a partir do XXX e usando o XXX como apoio) (arrombamento da folha e do 
-
-batente do portão com o uso de instrumento a guisa de alavanca) e adentrando a ZZZ.
-
-O acesso aos cômodos internos deu-se pelo arrombamento das folhas e batentes das 
-
-portas internas através do uso de instrumento a guisa de alavanca.
-
-No interior dos cômodos observou-se que o conteúdo dos moveis encontravam-se 
-
-remexidos e espalhados pelo piso e na sala marcas de pó nas superfícies das mesas/ estantes 
-
-indicavam que os aparelhos que lá encontravam-se haviam sido recentemente removidos.
-
-Não foram encontrados vestígios que pudessem levar a identificação do(s) autor(es). 
-
-Este laudo vai impresso no anverso de uma (01) folha deste papel, dele ficando arquivada 
-
-cópia, microprocessada, devidamente assinada e rubricada.
-
-* * * Era o que havia a relatar. * * *
-
-Os Peritos ______________ _______________
-
-Fernando Merege Segundo Signatário 
-
-Perito Criminal)
-
-SÃO BERNARDO DO CAMPO
-
-PROC - LAUDO N° /2005
-
-Natureza do Exame: FURTO QUALIFICADO. 
-
-Local: - rua, , n ̊ , < cidade>.
-
-Dia: / /2005 Hora MSG n°
-
-Este laudo deverá ser enviado ao o DP de < >. 
-
-Relator : Fernando Merege (Perito Criminal)
+        	<ul data-role="listview" data-inset="true" data-theme="d" id="list-laudo">
+            	<li>
+                	<h2><img src="img/pcsp_logo.gif" width="200" height="200"></h2>
+					<h2 contenteditable="true">NATUREZA DO EXAME: FURTO QUALIFICADO</h2>
+					<h2 contenteditable="true">LAUDO<br>
+					  <br>
+					</h2>
+                    <p contenteditable="true">Aos, < dia> de <mês> de <ano >, na cidade de <cidade do IC > e no INSTITUTO DE CRIMINALISTICA, da Superintendência de Policia Técnico-Cientifica, da Secretaria da Segurança Pública do Estado de São Paulo, de conformidade com o dispositivo no artigo 178 do Decreto-lei n§ 3.689, de 3 de outubro de 1941, pelo Perto Criminal Titular deste I.C., Dr. < >, foram designados o Perito Criminal < Nome do Perito> para proceder o exame supra-especificado, em atendimento requisição da <numero da delegacia > 
+                      o Delegacia de Policia de < cidade da delegacia>.<br>
+                    <h2 contenteditable="true"><br>
+                    DO LOCAL E DOS EXAMES:<br>
+                    <br>
+                    </h2>
+					<p contenteditable="true">O local examinado, situado à rua < > , n ̊ < > ,bairro < >, na cidade de < > de um imóvel destinado a função < >, construído ao < nível da via> e seguindo o alinhamento normalizado dos demais imóveis. O imóvel era vedado em seus limites por <muro de alvenaria/ cerca de arame/ grades metálicas> com uma altura total de <X> metros. O acesso regular era obtido por <portão metálico> situado na <posição> que era guarnecido por <fechadura/ cadeado> da marca <ZZZZ>
+					  .<br>
+					  <br>
+					  No caso, o acesso ao interior do terreno deu-se pela
+<escalada do muro/ cerca/ grade> a partir <do XXX> e usando <o XXX como apoio> 
+<arrombamento da folha e do batente do portão com o uso de instrumento a guisa de alavanca>. O acesso ao interior do prédio que, ocupava a região centro direita/ esquerda do terreno) e possuía um corredor lateral à direita/ esquerda, deu pela (escalada do muro/ cerca/ grade a partir do XXX e usando o XXX como apoio) (arrombamento da folha e do batente do portão com o uso de instrumento a guisa de alavanca) e adentrando a ZZZ.<br>
+<br>
+O acesso aos cômodos internos deu-se pelo arrombamento das folhas e batentes das portas internas através do uso de instrumento a guisa de alavanca. No interior dos cômodos observou-se que o conteúdo dos moveis encontravam-se remexidos e espalhados pelo piso e na sala marcas de pó nas superfícies das mesas/ estantes indicavam que os aparelhos que lá encontravam-se haviam sido recentemente removidos.<br>
+<br>
+Não foram encontrados vestígios que pudessem levar a identificação do(s) autor(es). Este laudo vai impresso no anverso de uma (01) folha deste papel, dele ficando arquivada cópia, microprocessada, devidamente assinada e rubricada.<br>
+<br>
+* * * Era o que havia a relatar. * * *                    <br>
+<br>
+Os Peritos<br>
+<br>
+Fernando Merege _________________________________ (Perito Criminal)<br>
+<br>
+Segundo Signatário _________________________________<br>
+<br>
+SÃO BERNARDO DO CAMPO<br>
+PROC - LAUDO N° /2005<br>
+Natureza do Exame: FURTO QUALIFICADO.<br>
+Local: - rua, , n ̊ , < cidade>.<br>
+Dia: / /2005 Hora MSG n°<br>
+<br>
+Este laudo deverá ser enviado ao o DP de < >.<br>
+Relator : Fernando Merege (Perito Criminal)                </li>
+            </ul>
 		</div><!-- /content -->
 	</div><!-- /page -->
         

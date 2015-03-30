@@ -33,6 +33,13 @@
 .icone-arma_fogo:before {
 	content: "\e600";
 }
+#list-laudo li p {
+	white-space:normal;
+	font-size:14px;
+}
+#list-laudo li h2 {
+	text-align:center;
+}
 .img-editor-canvas {
 	/*display:block;*/
 
