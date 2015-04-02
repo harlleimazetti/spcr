@@ -8,6 +8,27 @@ function onDeviceReady() {
 	//sincronizar();
 }
 
+$(document).on('pagecreate','#mapa',function() {
+	var latitude = -15.797891799999999;
+	var longitude = -47.8866393;
+	var latLong = new google.maps.LatLng(latitude, longitude);
+	var mapOptions = {zoom: 8, center: latLong};
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	var infowindow = new google.maps.InfoWindow({
+		content: '<h1 style="color:#333; text-shadow:none">RE: <span style="color:#f00; text-shadow:none">123456</span></h1><h2 style="color:#333; text-shadow:none;">Furto em residencia</h2><p style="color:#333">Ocorrencia registrada no 2o. Distrito de Policia - Residencia foi invadida e varios objetos foram subtraidos do local, bem como, joias e dinheiro que estavam guardados no local.</p>'
+	});
+	var marker = new google.maps.Marker({
+		position: latLong,
+		map: map,
+		icon: "data:image/png;base64,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",
+		title: 'Localização',
+		animation: google.maps.Animation.DROP
+	});
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.open(map,marker);
+	});
+});
+
 $(document).on('focus', '#evidencia_form input', function() 
 {
 	sessionStorage.campo_foco = $(this).attr('id');

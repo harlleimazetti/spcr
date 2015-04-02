@@ -38,6 +38,8 @@ $(document).on('click', '.desenho_menu .item', function()
 		$('#desenho_container').append('<div class="container_desenho"><div class="item_desenho arma_fogo" id="' + id + '"></div></div>');
 	} else if (opcao == 'corpo') {
 		$('#desenho_container').append('<div class="container_desenho"><div class="item_desenho corpo" id="' + id + '"></div></div>');
+	} else if (opcao == 'vitima_homem') {
+		$('#desenho_container').append('<div class="container_desenho"><div class="item_desenho vitima_homem" id="' + id + '"></div></div>');
 	} else if (opcao == 'porta') {
 		$('#desenho_container').append('<div class="container_desenho"><div class="item_desenho porta" id="' + id + '"></div></div>');
 	} else if (opcao == 'eletro') {
