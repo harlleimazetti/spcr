@@ -127,132 +127,12 @@ imgEditor.prototype.revert = function() {
 	});
 }
 imgEditor.prototype.corners = function() {
-	
-}
-
-function calcRatio(srcWidth, srcHeight, maxWidth, maxHeight) {
-	return(Math.min(maxWidth / srcWidth, maxHeight / srcHeight));
-}
-
-var editor = new imgEditor();
-
-$(document).on('pagebeforeshow', '#img_editor', function()
-{
-	//canvasImgEditor = document.getElementById('img_editor_canvas');
-	//ctxImgEditor = canvasImgEditor.getContext('2d');
-	editor.carregaImagem(sessionStorage.img_src);
-});
-
-$(document).on('pageshow', '#img_editor', function()
-{
-	//canvasImgEditor = document.getElementById('img_editor_canvas');
-	//ctxImgEditor = canvasImgEditor.getContext('2d');
-	//editor.carregaImagem(sessionStorage.img_src);
-});
-
-$(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
-{
-	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
-	editor.rotateRight();
-});
-
-$(document).on('click', '#img_editor #imgEditorBtnRotateLeft', function()
-{
-	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
-	editor.rotateLeft();
-});
-$(document).on('click', '#img_editor #imgEditorBtnFindCorners', function()
-{
-	editor.corners();
-});
-$(document).on('click', '#img_editor #imgEditorBtnGray', function()
-{
-	editor.gray();
-});
-$(document).on('click', '#img_editor #imgEditorBtnCrop', function()
-{
-	alert('Iniciar Edição');
-	Caman(canvasImgEditorID, function() {
-		this.render();
-	});
-});
-$(document).on('click', '#img_editor #imgEditorBtnBlur', function()
-{
-	editor.blur();
-});
-$(document).on('click', '#img_editor #imgEditorBtnEdges', function()
-{
-	editor.edges();
-});
-$(document).on('click', '#img_editor #imgEditorBtnRevert', function()
-{
-	editor.revert();
-});
-$(document).on('slidestop', '#imgEditorBrightness', function() {
-	editor.brightness($(this).val());
-});
-$(document).on('slidestop', '#imgEditorContrast', function() {
-	editor.contrast($(this).val());
-});
-$(document).on('slidestop', '#imgEditorThreshold', function() {
-	editor.threshold($(this).val());
-});
-
-function resizeImgEditor() {
-	/*
-	var marginWidth = 0.00;
-	var canvasPercent = 1 - (marginWidth * 2);
-	//console.log('Margin Width: ' + marginWidth);
-	//console.log('Canvas Percent: ' + canvasPercent);
-	var newWidth = window.innerWidth;
-	var newHeight = window.innerHeight;
-	//console.log('Width: ' + newWidth + ' - Height: ' + newHeight);
-	var margin = newWidth * marginWidth;
-	//console.log('Margem: ' + margin);
-	var newCanvasWidth = newWidth * canvasPercent;
-	//console.log('Nova Canvas Width: ' + newCanvasWidth);
-	//console.log('Canvas Width: ' + canvasImgEditor.width);
-	var newCanvasScale = newCanvasWidth / (canvasImgEditor.width);
-	//console.log('Nova Canvas Scale: ' + newCanvasScale);
-	/*$(canvasImgEditorID).css({
-		'-webkit-transform' : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'-moz-transform'    : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'-ms-transform'     : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'-o-transform'      : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
-		'transform'         : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')'
-	});
-	*/
-	var newWidth = window.innerWidth;
-	var canvasPercent = newWidth / imgWidth;
-	var newHeight = imgHeight * canvasPercent;
-	var im_tmp = new Image();
-	im_tmp.onload = function() {
-		imgWidth = newWidth;
-		imgHeight = newHeight;
-		canvasImgEditor.width = newWidth;
-		canvasImgEditor.height = newHeight;
-		var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
-		ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
-		//console.log('Ratio: ' + ratio);
-		//console.log('imgWidth: ' + imgWidth);
-		//console.log('imgHeight: ' + imgHeight);
-		//console.log('imgWidth * ratio: ' + (imgWidth * ratio));
-		//console.log('imgHeight * ratio: ' + (imgHeight * ratio));
-	}
-	im_tmp.src = sessionStorage.img_src;
-}
-
-/*imgEditor.prototype.corners = function() {
-	var canvasImgEditorTmp = document.getElementById('img_editor_canvas_tmp');
-	ctxImgEditorTmp = canvasImgEditorTmp.getContext('2d');
-	
 	im_tmp = new Image();
-
 	im_tmp.onload = function() {
-       	var width = 320;
-       	var height = 240;
-		ctxImgEditorTmp.drawImage(im_tmp, 0, 0, width, height);
-		var imageData = ctxImgEditorTmp.getImageData(0, 0, width, height);
+       	var width = this.width;
+       	var height = this.height;
+		//ctxImgEditor.drawImage(im_tmp, 0, 0, width, height);
+		var imageData = ctxImgEditor.getImageData(0, 0, width, height);
 		var im = new jsfeat.matrix_t(width, height, jsfeat.U8_t | jsfeat.C1_t);
 		jsfeat.imgproc.grayscale(imageData.data, width, height, im);
 		jsfeat.imgproc.box_blur_gray(im, im, 4, 0);
@@ -289,7 +169,7 @@ function resizeImgEditor() {
 		// render result back to canvas
 		var data_u32 = new Uint32Array(imageData.data.buffer);
 		render_corners(corners, count, data_u32, width);
-		ctxImgEditorTmp.putImageData(imageData, 0, 0);
+		ctxImgEditor.putImageData(imageData, 0, 0);
 		
 		function render_corners(corners, count, img, step) {
 			var pix = (0xff << 24) | (0x00 << 16) | (0xff << 8) | 0x00;
@@ -406,6 +286,7 @@ function resizeImgEditor() {
 			});
 		}
 
+/*
 		// Ajusta para as proporções da imagem original antes de recortar
 		percent = canvasImgEditor.width * 100 / 320;
 		//console.log('Imagem Original: ' + canvasImgEditor.width);
@@ -419,18 +300,18 @@ function resizeImgEditor() {
 		bottomLeft.y = bottomLeft.y * (percent / 100);
 		bottomRight.x = bottomRight.x * (percent / 100);
 		bottomRight.y = bottomRight.y * (percent / 100);
-		
+*/		
 		var q1Width = topRight.x - topLeft.x;
 		var q1Height = bottomLeft.y - topLeft.y;
 	
 		//recortarFora(topLeft, topRight, bottomLeft, bottomRight);
-		recortarDentro(topLeft, topRight, bottomLeft, bottomRight);
+		//recortarDentro(topLeft, topRight, bottomLeft, bottomRight);
 			
-		//console.log('Coordenadas depois do ajuste (INSIDE)');
-		//console.log(topLeft);
-		//console.log(topRight);
-		//console.log(bottomLeft);
-		//console.log(bottomRight);
+		console.log('Coordenadas depois do ajuste (INSIDE)');
+		console.log(topLeft);
+		console.log(topRight);
+		console.log(bottomLeft);
+		console.log(bottomRight);
 		
 		var co = 180 / Math.PI;
 		var dx = topLeft.x - topRight.x;
@@ -441,6 +322,118 @@ function resizeImgEditor() {
 		//console.log(angulo);
 	}
 	im_tmp.src = sessionStorage.img_src;
-}*/
+}
+
+function calcRatio(srcWidth, srcHeight, maxWidth, maxHeight) {
+	return(Math.min(maxWidth / srcWidth, maxHeight / srcHeight));
+}
+
+var editor = new imgEditor();
+
+$(document).on('pagebeforeshow', '#img_editor', function()
+{
+	//canvasImgEditor = document.getElementById('img_editor_canvas');
+	//ctxImgEditor = canvasImgEditor.getContext('2d');
+	editor.carregaImagem(sessionStorage.img_src);
+});
+
+$(document).on('pageshow', '#img_editor', function()
+{
+	//canvasImgEditor = document.getElementById('img_editor_canvas');
+	//ctxImgEditor = canvasImgEditor.getContext('2d');
+	//editor.carregaImagem(sessionStorage.img_src);
+});
+
+$(document).on('click', '#img_editor #imgEditorBtnRotateRight', function()
+{
+	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
+	editor.rotateRight();
+});
+
+$(document).on('click', '#img_editor #imgEditorBtnRotateLeft', function()
+{
+	//editor.resize(canvasImgEditor.height, canvasImgEditor.width);
+	editor.rotateLeft();
+});
+$(document).on('click', '#img_editor #imgEditorBtnFindCorners', function()
+{
+	editor.corners();
+});
+$(document).on('click', '#img_editor #imgEditorBtnGray', function()
+{
+	editor.gray();
+});
+$(document).on('click', '#img_editor #imgEditorBtnCrop', function()
+{
+	alert('Iniciar Edição');
+	Caman(canvasImgEditorID, function() {
+		this.render();
+	});
+});
+$(document).on('click', '#img_editor #imgEditorBtnBlur', function()
+{
+	editor.blur();
+});
+$(document).on('click', '#img_editor #imgEditorBtnEdges', function()
+{
+	editor.edges();
+});
+$(document).on('click', '#img_editor #imgEditorBtnRevert', function()
+{
+	editor.revert();
+});
+$(document).on('slidestop', '#imgEditorBrightness', function() {
+	editor.brightness($(this).val());
+});
+$(document).on('slidestop', '#imgEditorContrast', function() {
+	editor.contrast($(this).val());
+});
+$(document).on('slidestop', '#imgEditorThreshold', function() {
+	editor.threshold($(this).val());
+});
+
+function resizeImgEditor() {
+	/*
+	var marginWidth = 0.00;
+	var canvasPercent = 1 - (marginWidth * 2);
+	//console.log('Margin Width: ' + marginWidth);
+	//console.log('Canvas Percent: ' + canvasPercent);
+	var newWidth = window.innerWidth;
+	var newHeight = window.innerHeight;
+	//console.log('Width: ' + newWidth + ' - Height: ' + newHeight);
+	var margin = newWidth * marginWidth;
+	//console.log('Margem: ' + margin);
+	var newCanvasWidth = newWidth * canvasPercent;
+	//console.log('Nova Canvas Width: ' + newCanvasWidth);
+	//console.log('Canvas Width: ' + canvasImgEditor.width);
+	var newCanvasScale = newCanvasWidth / (canvasImgEditor.width);
+	//console.log('Nova Canvas Scale: ' + newCanvasScale);
+	/*$(canvasImgEditorID).css({
+		'-webkit-transform' : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'-moz-transform'    : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'-ms-transform'     : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'-o-transform'      : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')',
+		'transform'         : 'scale(' + newCanvasScale + ', ' + newCanvasScale + ')'
+	});
+	*/
+	var newWidth = window.innerWidth;
+	var canvasPercent = newWidth / imgWidth;
+	var newHeight = imgHeight * canvasPercent;
+	var im_tmp = new Image();
+	im_tmp.onload = function() {
+		imgWidth = newWidth;
+		imgHeight = newHeight;
+		canvasImgEditor.width = newWidth;
+		canvasImgEditor.height = newHeight;
+		var ratio = calcRatio(imgWidth,imgHeight,canvasImgEditor.width,canvasImgEditor.height);
+		ctxImgEditor.drawImage(im_tmp, 0, 0, imgWidth*ratio,imgHeight*ratio);
+		//console.log('Ratio: ' + ratio);
+		//console.log('imgWidth: ' + imgWidth);
+		//console.log('imgHeight: ' + imgHeight);
+		//console.log('imgWidth * ratio: ' + (imgWidth * ratio));
+		//console.log('imgHeight * ratio: ' + (imgHeight * ratio));
+	}
+	im_tmp.src = sessionStorage.img_src;
+}
 
 ///////// IMG EDITOR FIM

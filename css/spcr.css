@@ -151,6 +151,12 @@
 	background:url(../img/corpos/corpo.svg) no-repeat top left;
 	background-size:100% 100%;
 }
+.vitima_homem {
+	width:60px;
+	height:175px;
+	background:url(../img/corpos/vitima_homem.svg) no-repeat top left;
+	background-size:100% 100%;
+}
 .clear {
 	clear:both;	
 }

@@ -60,12 +60,13 @@ $(document).on('click', '#scan', function()
 	});
 });
 
-$(document).on('click', '.capturar_imagem', function()
+$(document).on('click', '.capturar_imagem', function(event)
 {
+	event.preventDefault();
 	sessionStorage.img_uri = $(this).data('img-uri');
 	sessionStorage.img_vis = $(this).data('img-vis');
 	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
-	destinationType: Camera.DestinationType.FILE_URI }); 
+	destinationType: Camera.DestinationType.FILE_URI });
 });
 
 function onSuccess(imageURI) {
